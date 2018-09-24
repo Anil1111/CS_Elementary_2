@@ -7,4 +7,4 @@ Materials for the C # Elementary course
 - Домашние задания Вы найдете в папке необходимого занятия.
 
 P.S. Хорошей учебы!
-Serhii Artemenko!
+Serhii Artemenko!!
