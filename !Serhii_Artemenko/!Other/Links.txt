@@ -14,3 +14,6 @@ https://azure.microsoft.com/ru-ru/
 
 
 https://www.microsoft.com/net
+
+// UML
+draw.io
