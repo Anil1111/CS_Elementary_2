@@ -10,6 +10,9 @@ namespace Task4
     {
         static void Main(string[] args)
         {
+            Rectangle rect = new Rectangle();
+            rect.printResult();
+            Console.ReadKey();
         }
     }
 }
