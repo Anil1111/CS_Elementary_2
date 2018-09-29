@@ -10,6 +10,13 @@ namespace WorkerClass
     {
         static void Main(string[] args)
         {
+            OutPutInformation(InputInfornation());
+
+            Console.ReadKey();
+        }
+
+        private static Worker[] InputInfornation()
+        {
             int id_ = 1;
             Console.Write("Введите кол-во сотрудников: ");
             id_ = Convert.ToInt16(Console.ReadLine());
@@ -26,6 +33,11 @@ namespace WorkerClass
                 workerShow = workerInsert.InsertWorker(workerAdd, id_, i); // Добавляю в массив платежей
             }
 
+            return workerShow;
+        }
+
+        private static void OutPutInformation(Worker[] workerShow)
+        {
             Console.WriteLine();
             Console.Write("Введите стаж работы: ");
             double inputStag = Convert.ToDouble(Console.ReadLine());
@@ -34,11 +46,9 @@ namespace WorkerClass
             Console.WriteLine(new string('-', 30) + "Упорядочивание по алфавиту фамилии работников;:" + new string('-', 30));
             foreach (var element in new SortWorker().SotrWork(workerShow, inputStag)) // вывожу отсортированный результат
             {
-                Console.WriteLine(@"ФИО работника: {0}",element.famWorker);
-                Console.WriteLine(@"Стаж работника: {0} г.", element.stagWork); 
+                Console.WriteLine(@"ФИО работника: {0}", element.famWorker);
+                Console.WriteLine(@"Стаж работника: {0} г.", element.stagWork);
             }
-
-            Console.ReadKey();
         }
     }
 }
