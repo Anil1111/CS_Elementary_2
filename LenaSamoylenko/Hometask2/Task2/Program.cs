@@ -10,12 +10,14 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Worker person1 = new Worker();
-            person1.addData("SmithJK", "driver", 1990);
-            person1.addData("BinKR", "manager", 2010);
-            person1.addData("BinKR", "manager", 2012);
-            person1.orderDataSecondName();
-            Console.ReadKey();
+            Workers workers = new Workers();
+            workers.addData("Ivanov I.I.", "ingeneer", new DateTime(year: 2008, month:01, day:01));
+            workers.addData("Petrov I.N.", "driver", new DateTime(year:2001,month: 01, day: 01));
+            workers.addData("Kurilov K.L.", "doctor", new DateTime(year:2016,month: 01, day: 01));
+            workers.Print();
+            workers.workersSorting(true);
+            workers.orderWithCondition();
+            Console.ReadLine();
         }
     }
 }

@@ -8,13 +8,12 @@ namespace Task5
 {
     class Autor
     {
-        private string autor = null;
-        public string autorProperties
+        private string autor;
+        public string autorProperties=>autor;
+        public Autor(string bookAutor)
         {
-            get { return autor; }
-            set { autor = value; }
+            this.autor = bookAutor;
         }
-
         internal void Show()
         {
             Console.ForegroundColor = ConsoleColor.Green;

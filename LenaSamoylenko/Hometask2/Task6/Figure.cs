@@ -9,31 +9,34 @@ namespace Task6
     class Figure
     {
 
-        public double[] l = new double[5];
-        public double perimetr;
+        List<double> Side = new List<double>();
+        private double perimetr => PerimeterCalculator();
+        public double Perimetr => perimetr;
+
         public Figure(Point p1, Point p2, Point p3)
         {
-            l[0] = LengthSide(p1, p2);
-            l[1] = LengthSide(p2, p3);
-            l[2] = LengthSide(p1, p3);
+            polygonSideLenght(p1, p2);
+            polygonSideLenght(p2, p3);
+            polygonSideLenght(p3, p1);
         }
-
-        public Figure() { }
         public Figure(Point p1, Point p2, Point p3, Point p4)
         {
-            l[0] = LengthSide(p1, p2);
-            l[1] = LengthSide(p2, p3);
-            l[2] = LengthSide(p3, p4);
-            l[3] = LengthSide(p4, p1);
+            polygonSideLenght(p1, p2);
+            polygonSideLenght(p2, p3);
+            polygonSideLenght(p3, p4);
+            polygonSideLenght(p4, p1);
         }
-
         public Figure(Point p1, Point p2, Point p3, Point p4, Point p5)
         {
-            l[0] = LengthSide(p1, p2);
-            l[1] = LengthSide(p2, p3);
-            l[2] = LengthSide(p3, p4);
-            l[3] = LengthSide(p4, p5);
-            l[4] = LengthSide(p5, p1);
+            polygonSideLenght(p1, p2);
+            polygonSideLenght(p2, p3);
+            polygonSideLenght(p3, p4);
+            polygonSideLenght(p4, p5);
+            polygonSideLenght(p5, p1);
+        }
+        private void polygonSideLenght(Point p1, Point p2)
+        {
+            Side.Add(LengthSide(p1, p2));
         }
 
         private double LengthSide(Point A, Point B)
@@ -44,30 +47,27 @@ namespace Task6
             return lenght;
         }
 
-        public void PerimeterCalculator()
+        private double PerimeterCalculator()
         {
-            perimetr = l.Sum();
-            Console.WriteLine("Perimetr is:{0}", perimetr);
+            double perimetr = Side.Sum();
+            return perimetr;
         }
 
-        public void Print()
+        public void printName()
         {
-            if (l[3] == 0 && l[4] == 0)
+            if (Side.Count == 3)
             {
                 Console.WriteLine("This is triangle");
 
             }
-            else if (l[4] == 0)
+            else if (Side.Count == 4)
             {
                 Console.WriteLine("This is tetragon");
             }
-            else 
+            else
             {
                 Console.WriteLine("This is pentagon");
             }
-            PerimeterCalculator();
-
-            Console.ReadLine();
         }
     }
 }
