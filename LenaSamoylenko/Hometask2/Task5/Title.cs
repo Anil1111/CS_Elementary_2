@@ -8,14 +8,12 @@ namespace Task5
 {
     class Title
     {
-        private string title = null;
-        public string titleProperties
+        private string title;
+        public string titleProperties=>title;
+        public Title(string booksTitle)
         {
-            get { return title; }
-            set { title = value; }
-
+            this.title = booksTitle;
         }
-
         internal void Show()
         {
             Console.ForegroundColor = ConsoleColor.Red;
