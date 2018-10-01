@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Calculator_alhorithmRutizhauzer
 {
@@ -10,8 +11,8 @@ namespace Calculator_alhorithmRutizhauzer
     {
 
         private string userData;
-        char[] symbols = { };
-        List<string> symbols1;
+        List<string> symbols;
+        //List<string> symbols1;
         int[] count = { };
 
         public int Count => count.Length;
@@ -24,29 +25,28 @@ namespace Calculator_alhorithmRutizhauzer
             inputData temp = new inputData();
             userData = temp.UserData;
             count = null;
+            //symbols = null;
             symbols = null;
-            symbols1 = null;
         }
 
         private void separetionData()
         {
-            symbols = userData.ToCharArray();
-            symbols1 = new List<string>();
+            //symbols = userData.ToCharArray();
+            symbols = new List<string>();
             //ошибка при вводе первого двухзначного числа
             //symbols1.Add(symbols[0].ToString());
-            for (int i = 1; i < symbols.Length; i++)
-            {
-                if (Char.IsDigit(symbols[i]) && Char.IsDigit(symbols[i - 1]))
-                {
-                    
-                    symbols1.Add(symbols[i - 1].ToString() + symbols[i].ToString());
 
-                }
-                else
-                { symbols1.Add(symbols[i].ToString()); }
+            //добавление в symbols1 нормальных чисел
+            Regex pattern = new Regex(@"\d+|[+,-,*,/,(,)]");
+            MatchCollection membersMatchCollection = pattern.Matches(UserData);
+            foreach (Match match in membersMatchCollection)
+            {
+                symbols.Add(match.Value);
+                match.NextMatch();
+
             }
 
-            count = new int[symbols1.Count];
+            count = new int[symbols.Count];
 
         }
 
@@ -55,13 +55,13 @@ namespace Calculator_alhorithmRutizhauzer
             int vHelp;
             separetionData();
             int tempCount = 0;
-            for (int i = 0; i < symbols1.Count; i++)
+            for (int i = 0; i < symbols.Count; i++)
             {
-                if (symbols1[i] == "(" || int.TryParse(symbols1[i], out vHelp) == true)
+                if (symbols[i] == "(" || int.TryParse(symbols[i], out vHelp) == true)
                 {
                     count[i] = ++tempCount;
                 }
-                else if (symbols1[i] == ")" || symbols1[i] == "+" || symbols1[i] == "-" || symbols1[i] == "*" || symbols1[i] == "/")
+                else if (symbols[i] == ")" || symbols[i] == "+" || symbols[i] == "-" || symbols[i] == "*" || symbols[i] == "/")
                 {
                     count[i] = --tempCount;
                 }
@@ -83,9 +83,9 @@ namespace Calculator_alhorithmRutizhauzer
             string[] variable = new string[3];
 
             int tempIndex = searchIndexOfMaxAssignLevel();
-            variable[0] = symbols1[tempIndex];
-            variable[1] = symbols1[tempIndex + 1];
-            variable[2] = symbols1[tempIndex + 2];
+            variable[0] = symbols[tempIndex];
+            variable[1] = symbols[tempIndex + 1];
+            variable[2] = symbols[tempIndex + 2];
             return variable;
         }
 
