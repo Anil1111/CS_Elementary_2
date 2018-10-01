@@ -7,6 +7,8 @@ namespace home_work_lecture2
 {
     class Order : IComparable
     {
+        //Это не удавшаяся итерация=(
+
         //Dannie platelshika
         public string namePlatelshik;
         public int innPlatelshik;
