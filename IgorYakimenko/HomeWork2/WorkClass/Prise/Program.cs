@@ -9,6 +9,13 @@ namespace Prise
     class Program
     {
         static void Main(string[] args)
+        {            
+            OutPutInformation(InputInfornation());
+
+            Console.ReadKey();
+        }
+
+        private static CPrise[] InputInfornation()
         {
             int id_ = 1;
             Console.Write("Введите кол-во товара: ");
@@ -18,14 +25,19 @@ namespace Prise
 
             PriceInsert priceInsert = new PriceInsert();
 
-             CPrise[] produktAdd = new CPrise[id_]; //массив для новых ...
-             CPrise[] produktShow = new CPrise[id_]; //возвращаемый массив для работы (сортировка, поиск)
+            CPrise[] produktAdd = new CPrise[id_]; //массив для новых ...
+            CPrise[] produktShow = new CPrise[id_]; //возвращаемый массив для работы (сортировка, поиск)
 
             for (int i = 0; i < id_; i++)
             {
                 produktShow = priceInsert.InsertNewRec(produktAdd, id_, i); // Добавляю в массив ...
             }
 
+            return produktShow;
+        }
+
+        private static void OutPutInformation(CPrise[] produktShow)
+        {
             Console.WriteLine();
             Console.Write("Введите названиям товаров: ");
             string inputProduct_ = Console.ReadLine();
@@ -38,8 +50,6 @@ namespace Prise
                 Console.WriteLine(@"Название товара: {0}", element.nameProduct);
                 Console.WriteLine(@"Стоимость товара в грн. : {0}", element.priceProduct);
             }
-
-            Console.ReadKey();
         }
     }
 }

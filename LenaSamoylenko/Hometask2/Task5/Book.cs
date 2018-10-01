@@ -8,36 +8,49 @@ namespace Task5
 {
     class Book
     {
-        private string book = null;
-        public string bookProperties
-        {
-            get { return book; }
-            set { book = value; }
 
+        Title title = null;
+        Autor autor = null;
+        Content content = null;
+
+        internal Title Title => title;
+        internal Autor Autor => autor;
+        internal Content Content => content;
+        public Book(string autor, string title, string content)
+        {
+            this.autor = new Autor(autor);
+            this.title = new Title(title);
+            this.content = new Content(content);
+        }
+
+    }
+    class Books
+    {
+        List<Book> books;
+        public Books()
+        {
+            books = new List<Book>();
         }
 
         public void addBook(string autor, string title, string content)
         {
-            Autor autorBook1 = new Autor();
-            autorBook1.autorProperties = autor;
-            Title titleBook1 = new Title();
-            titleBook1.titleProperties = title;
-            Content contentBook1 = new Content();
-            contentBook1.contentProperties = content;
-            Show(autorBook1, titleBook1, contentBook1);
-
+            Book bookTemp = new Book(autor, title, content);
+            books.Add(bookTemp);
         }
-        internal void Show(Autor a, Title t, Content c)
+        private void Show(Autor a, Title t, Content c)
         {
             a.Show();
             t.Show();
             c.Show();
         }
-
-        public string putData(string massege)
+        public void Print()
         {
-            Console.WriteLine($"{massege}");
-            return (Console.ReadLine());
+            foreach (Book book in books)
+            {
+                Show(book.Autor, book.Title, book.Content);
+            }
         }
+
+
     }
 }

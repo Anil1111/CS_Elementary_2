@@ -10,6 +10,15 @@ namespace WorkClass
     {
         static void Main(string[] args)
         {
+
+            OutPutInformation(InputInfornation());
+           
+            Console.ReadKey();
+        }
+
+        private static Order[] InputInfornation()
+        {
+
             int id_ = 1;
             Console.Write("Введите кол-во платежек: ");
             id_ = Convert.ToInt16(Console.ReadLine());
@@ -26,19 +35,23 @@ namespace WorkClass
                 orderWork = OrdInsert.AddOrder(orderAdd, id_, i); // Добавляю в массив платежей
             }
 
+            return orderWork;
+        }
+
+        private static void OutPutInformation(Order[] orderWork)
+        {
             Console.WriteLine();
             Console.Write("Введите сумму: ");
             double inputSum = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine();
 
-            Console.WriteLine(new string('-',30)+"Упорядоченные платежки по убыванию перечисляемой суммы:"+new string('-',30));
-            foreach (var element in new SortOrders().SotrOrder(orderWork,inputSum)) // вывожу отсортированный результат
+            Console.WriteLine(new string('-', 30) + "Упорядоченные платежки по убыванию перечисляемой суммы:" + new string('-', 30));
+            foreach (var element in new SortOrders().SotrOrder(orderWork, inputSum)) // вывожу отсортированный результат
             {
-                Console.WriteLine(@"ФИО отправителя: {0}",element.NamePayer);
-                Console.WriteLine(@"Сумма платежа: {0}", element.SummPayer); 
+                Console.WriteLine(@"ФИО отправителя: {0}", element.NamePayer);
+                Console.WriteLine(@"Сумма платежа: {0}", element.SummPayer);
             }
 
-            Console.ReadKey();
         }
     }
 }

@@ -8,12 +8,11 @@ namespace Task5
 {
     class Content
     {
-        private string content=null;
-        public string contentProperties
+        private string content;
+        public string contentProperties=>content;
+        public Content(string bookContent)
         {
-            get { return content; }
-            set {content = value; }
-
+            this.content = bookContent;
         }
         internal void Show()
         {
