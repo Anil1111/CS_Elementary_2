@@ -15,7 +15,7 @@ namespace Task5
                 Console.Clear();
                 Console.WriteLine("Введите название новой книги : ");
                 Title = Console.ReadLine();
-                Console.WriteLine("Введите название автора : ");
+                Console.WriteLine("Введите автора : ");
                 Author = Console.ReadLine();
                 Console.WriteLine("Введите содержание книги : ");
                 Content = Console.ReadLine();
