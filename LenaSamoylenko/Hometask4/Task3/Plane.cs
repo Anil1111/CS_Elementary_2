@@ -9,10 +9,8 @@ namespace Task3
     class Plane : Vehicle
     {
         private double height;
-        private double passengers;
         public double Height => height;
-        public double Passengers => passengers;
-        public Plane(double price, int modelYear) : base(price, modelYear) { }
+        public Plane(double price, int modelYear, int passengers) : base(price, modelYear, passengers) { }
 
         public void heightDefinition()
         {

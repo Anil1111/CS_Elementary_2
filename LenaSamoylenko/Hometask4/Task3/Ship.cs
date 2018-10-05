@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Task3
 {
-    class Ship:Vehicle
+    class Ship : Vehicle
     {
-        private double port;
-        public double Port => port;
-        public Ship(double price, int modelYear, double port) : base(price, modelYear)
+        private string port;
+        public string Port => port;
+        public Ship(double price, int modelYear, string port, int passengers) : base(price, modelYear, passengers)
         {
             this.port = port;
         }

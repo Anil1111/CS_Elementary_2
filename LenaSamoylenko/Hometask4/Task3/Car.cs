@@ -8,7 +8,7 @@ namespace Task3
 {
     class Car:Vehicle
     {
-        public Car(double price, int modelYear) : base(price, modelYear) { }
+        public Car(double price, int modelYear, int passegers) : base(price, modelYear, passegers) { }
 
     }
 }

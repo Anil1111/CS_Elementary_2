@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Task3.Car">
-    <Position X="1.75" Y="1.75" Width="1.5" />
+    <Position X="1.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Car.cs</FileName>
@@ -22,27 +22,27 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Task3.Vehicle">
-    <Position X="3.75" Y="1" Width="2" />
+    <Position X="4" Y="2.25" Width="2" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="Task3.Vehicle.countPassengersInVehicle">
-        <TypeIdentifier>
-          <NewMemberFileName>Vehicle.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAABAACAAQAAgAAAAAQAAAABAAAAASAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAABAACAAQAAgAAAAAQAAAAAAAAAACAAAAQgAAAEAAA=</HashCode>
       <FileName>Vehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Task3.Plane">
     <Position X="6.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABACABAQAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Plane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task3.countPassengersInVehicle">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
