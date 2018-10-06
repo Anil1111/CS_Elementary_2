@@ -4,23 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prise
+namespace PriceClass
 {
-    class Prise
+    class Price
     {
         private string productName;
         private string shopName;
-        private int productPrise;
+        private double productPrice;
 
         public string ProductName
         {
             get
             {
                 return productName;
-            }
-            set
-            {
-                productName = value;
             }
         }
 
@@ -30,40 +26,21 @@ namespace Prise
             {
                 return shopName;
             }
-            set
-            {
-                shopName = value;
-            }
         }
 
-        public int ProductPrise
+        public double ProductPrice
         {
             get
             {
-                return productPrise;
-            }
-            set
-            {
-                productPrise = value;
+                return productPrice;
             }
         }
 
-        public Prise()
+        public Price(string productName, string shopName, double productPrise)
         {
-            ProductName = "Default product name";
-            ShopName = "Default shop name";
-            ProductPrise = 0;
-        }
-        public Prise(string productName, string shopName, int productPrise)
-        {
-            ProductName = productName;
-            ShopName = shopName;
-            ProductPrise = productPrise;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("Product name "+ this.ProductName + " Shop name " + this.ShopName + " product prise "+ this.ProductPrise);
+            this.productName = productName;
+            this.shopName = shopName;
+            this.productPrice = productPrise;
         }
     }
 }
