@@ -3,38 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace home_work_lecture2
+namespace Task1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Worker worker1 = new Worker();
-            worker1.zapisWorker();
+            Worker worker1 = new Worker("Leha", 2008, "QA");
+            Worker worker2 = new Worker("Chel", 2009, "Dev");
+            Worker worker3 = new Worker("Paladin Mraka", 2000, "PM");
+            Worker worker4 = new Worker("Alex", 2010, "Desiner");
 
-            Worker[] workers = new Worker[] { worker1};
-            Array.Sort(workers);
-            foreach(Worker w in workers)
-            {
-                Console.WriteLine(w.nameFO);
-            }
+            Workers workers = new Workers();
 
-            Order order1 = new Order();
-            order1.zapisDannih();
+            workers.GetWorkers(worker1);
+            workers.GetWorkers(worker2);
+            workers.GetWorkers(worker3);
+            workers.GetWorkers(worker4);
 
-            Order order2 = new Order();
-            order2.zapisDannih();
-            Console.WriteLine();//Dlya lychshei chitaemosti v konsoly
-
-            Order[] orders = new Order[] { order1, order2};
-            Array.Sort(orders);
-            foreach (Order o in orders)
-            {
-                Console.WriteLine(o.zapis);
-            }
-
-            
-            
+            workers.Print(2001);
+            Console.WriteLine("-");
+            workers.Print(true);
             Console.ReadLine();
         }
     }

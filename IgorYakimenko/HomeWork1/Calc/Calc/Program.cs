@@ -10,10 +10,10 @@ namespace Calc
     class Program
     {
         static string str_error = string.Empty;
-          
+
         static void Main(string[] args)
         {
-            //string arg = "2+2*2"; тест
+            //string arg = "2+2*2"; //тест
             double result;
 
             if (args.Length > 0)
@@ -22,11 +22,10 @@ namespace Calc
                 result = Counting(output); //Решаем полученное выражение
 
                 if (string.IsNullOrEmpty(str_error)) Console.WriteLine("Результат: " + result); //Возвращаем результа
-                else Console.WriteLine(new string(' ',40)+str_error);
+                else Console.WriteLine(new string(' ', 40) + str_error);
 
                 Console.ReadKey();
             }
-             
         }
 
         //Метод возвращает true, если проверяемый символ - разделитель ("пробел" или "равно")
@@ -179,5 +178,6 @@ namespace Calc
                 return 0;
             }
         }
+
     }
 }

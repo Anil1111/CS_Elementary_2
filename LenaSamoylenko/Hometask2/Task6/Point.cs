@@ -10,15 +10,15 @@ namespace Task6
     {
         private int x, y;
         private string comment;
-        public int xPoint { get { return x; } }
-        public int yPoint { get { return y; } }
-        public string Comment { get { return comment; } }
+        public int xPoint => x; 
+        public int yPoint =>y; 
+        public string Comment => comment;
 
-        internal Point(int putX, int putY, string putComment)
+        public Point(int x, int y, string comment)
         {
-            x = putX;
-            y = putY;
-            comment = putComment;
+            this.x = x;
+            this.y = y;
+            this.comment = comment;
         }
     }
 }

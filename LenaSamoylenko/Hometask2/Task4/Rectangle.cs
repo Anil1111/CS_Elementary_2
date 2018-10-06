@@ -9,14 +9,17 @@ namespace Task4
     class Rectangle
     {
         private double side1, side2;
-        public Rectangle() { }
-        public Rectangle(double side1, double side2)
+        public double Side1=>side1;
+        public double Side2 => side2;
+        public Rectangle()
         {
-            this.side1 = side1;
-            this.side2 = side2;
+            this.side1 = getResult("first lenght");
+            this.side2 = getResult("second lenght");
         }
-        private double Area { get { return AreaCalculator(); } }
-        private double Perimeter { get { return PerimeterCalculator(); } }
+        public double Area => AreaCalculator(); 
+        public double Perimeter =>PerimeterCalculator();
+
+
 
         private double AreaCalculator()
         {
@@ -31,10 +34,9 @@ namespace Task4
 
         public void printResult()
         {
-            side1 = getResult("first");
-            side2 = getResult("second");
-            Console.WriteLine("Area is:\t {0}", AreaCalculator());
-            Console.WriteLine("Perimetr is:\t {0}",PerimeterCalculator());
+            
+            Console.WriteLine("Area is:\t {0}", Area);
+            Console.WriteLine("Perimetr is:\t {0}", Perimeter);
 
         }
         private double getResult(string message)
