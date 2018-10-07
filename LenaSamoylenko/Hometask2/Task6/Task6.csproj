@@ -4,7 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+<<<<<<< HEAD
     <ProjectGuid>{6D7C70C2-8243-496C-B391-6F9D73E91E28}</ProjectGuid>
+=======
+    <ProjectGuid>{EFA32ACF-5E73-4741-ABE6-17DAE4040994}</ProjectGuid>
+>>>>>>> d97b4f3d2c90536bc82b1e9b6b94c094d92be9ef
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Task6</RootNamespace>
@@ -43,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <Compile Include="Figure.cs" />
+    <Compile Include="Point.cs" />
+>>>>>>> d97b4f3d2c90536bc82b1e9b6b94c094d92be9ef
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
