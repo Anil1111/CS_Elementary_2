@@ -8,14 +8,14 @@ namespace Rectangle
 {
     class Rectangle
     {
-        public double side1;
-        public double side2;
+        private double side1;
+        private double side2;
 
         public double Area
         {
             get
             {
-                return AreaCalculatorClass.AreaCalculator(this);
+                return AreaCalculator();
             }
         }
 
@@ -23,7 +23,23 @@ namespace Rectangle
         {
             get
             {
-                return PerimeterCalculatorClass.PerimeterCalculator(this);
+                return PerimeterCalculator();
+            }
+        }
+
+        public double Side1
+        {
+            get
+            {
+                return side1;
+            }
+        }
+
+        public double Side2
+        {
+            get
+            {
+                return side2;
             }
         }
 
@@ -33,14 +49,21 @@ namespace Rectangle
             this.side2 = side2;
         }
 
-        public Rectangle()
+        public double AreaCalculator()
         {
-            side1 = 0;
-            side2 = 0;
+            return Side1 * Side2;
         }
 
-       
+        public double PerimeterCalculator()
+        {
+            return (2 * Side1 + 2 * Side2);
+        }
 
-        
+        public void Show()
+        {
+            Console.WriteLine("Area of rectangle = " + Area);
+            Console.WriteLine("Perimeter of rectangle = " + Perimeter);
+        }
+
     }
 }

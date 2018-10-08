@@ -45,7 +45,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
+=======
     <Compile Include="Rectangle.cs" />
+>>>>>>> d97b4f3d2c90536bc82b1e9b6b94c094d92be9ef
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
