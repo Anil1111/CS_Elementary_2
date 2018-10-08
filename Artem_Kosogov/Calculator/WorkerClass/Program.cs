@@ -13,22 +13,19 @@ namespace WorkerClass
     {
         static void Main(string[] args)
         {
-            Worker worker = new Worker();
-            //Worker[] workerArray = new Worker[] { new Worker("HerringhtonBR", "Aniki", 1995), new Worker("BoyND", "Dungeon master", 2005), new Worker("MarkWF", "Boss of this gym", 2003) };
-            Worker[] workerArray = WorkerInput.GetInputData();
-            for (int i = 0; i < workerArray.Length; i++)
-            {
-                Console.WriteLine(workerArray[i].ToString());
-            }
-                Console.WriteLine();
-            WorkerSurnameSort.SortWorkerArrayBySurname(ref workerArray);
-            for (int j = 0; j < workerArray.Length; j++)
-            {
-                Console.WriteLine(workerArray[j].ToString());
-            }
-                Console.WriteLine();
-            WorkerYearOfEmploymentConditionPrint.PrintWorkersWithYearOfEmploymentCondition(workerArray);     
-                Console.ReadKey();
+            Workers workers = new Workers();
+            Worker worker1 = new Worker("HerringhtonB", "Aniki", 2000);
+            Worker worker2 = new Worker("VanD", "Dungeon Master", 2008);
+            Worker worker3 = new Worker("MarkW", "Boss of this gym", 1995);
+            workers.InputUserData(worker1);
+            workers.InputUserData(worker2);
+            workers.InputUserData(worker3);
+            workers.Print();
+            Console.WriteLine(new string('-', 40));
+            workers.Print(true);
+            Console.WriteLine(new string('-', 40));
+            workers.Print(16);
+            Console.ReadKey();
             }
         }
     }

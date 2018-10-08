@@ -18,10 +18,6 @@ namespace WorkerClass
             {
                 return workerSurnameAndInitials;
             }
-            set
-            {
-                workerSurnameAndInitials = value;
-            }
         }
 
         public string WorkerPosition
@@ -29,10 +25,6 @@ namespace WorkerClass
             get
             {
                 return workerPosition;
-            }
-            set
-            {
-                workerPosition = value;
             }
         }
 
@@ -42,28 +34,13 @@ namespace WorkerClass
             {
                 return workerYearOfEmployment;
             }
-            set
-            {
-                workerYearOfEmployment = value;
-            }
-        }
-        public Worker()
-        {
-            WorkerSurnameAndInitials = "Default worker surname and initials";
-            WorkerPosition = "Default worker position";
-            WorkerYearOfEmployment = 0000;
         }
 
         public Worker(string surnameAndInitials, string workerPosition, int yearOfEmployment)
         {
-            WorkerSurnameAndInitials = surnameAndInitials;
-            WorkerPosition = workerPosition;
-            WorkerYearOfEmployment = yearOfEmployment;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("Worker's surname and initials " + this.WorkerSurnameAndInitials + " Worker's position " + this.WorkerPosition + " Year of worker's employment " + this.WorkerYearOfEmployment);
+            this.workerSurnameAndInitials = surnameAndInitials;
+            this.workerPosition = workerPosition;
+            this.workerYearOfEmployment = yearOfEmployment;
         }
     }
 }

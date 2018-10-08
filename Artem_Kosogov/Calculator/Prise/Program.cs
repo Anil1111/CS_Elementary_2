@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prise
+namespace PriceClass
 {
     
 
@@ -12,21 +12,23 @@ namespace Prise
     {
         static void Main(string[] args)
         {
-            //Prise[] array = PriseInput.GetPriseInput();
-            Prise[] array = new Prise[] { new Prise("Tomato", "ATB", 30), new Prise("Cucumber", "Pyatoro4ka", 23), new Prise("Sausages delicate", "ATB", 18) };
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.WriteLine(array[i].ToString());
-            }
-            Console.WriteLine();
-            PriseSortByProductName.SortProductByName(ref array);
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.WriteLine(array[i].ToString());
-            }
-            Console.WriteLine();
-            PrisePrintUserProductName.PrintPriseUserProductName(array);
-            Console.ReadKey();
+            Prices prices = new Prices();
+            Price price1 = new Price("Sausages delicate", "ATB", 17.90);
+            Price price2 = new Price("Pani hutoryanka", "Varus", 20); 
+            Price price3 = new Price("Sadochok", "ATB", 13);
+            Price price4 = new Price("Devstvennost' Pavluka", "Obshaga", 0.0001);
+            prices.InputUserData(price1);
+            prices.InputUserData(price2);
+            prices.InputUserData(price3);
+            prices.InputUserData(price4);
+            prices.Print();
+            Console.WriteLine(new string('-', 40));
+            prices.Print(isSorted: true);
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine("Enter product name to search");
+            string str = Console.ReadLine();
+            prices.Print(str);
+            Console.ReadLine();
 
         }
     }

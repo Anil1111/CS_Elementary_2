@@ -10,6 +10,8 @@ namespace Task5
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+=======
 
             Books books = new Books();
             books.addBook("Александр Грин", "Алые паруса", "прийдется прочитать самим");
@@ -21,6 +23,7 @@ namespace Task5
             //book1.addBook(aN, bT, bC);
             Console.ReadKey();
             
+>>>>>>> d97b4f3d2c90536bc82b1e9b6b94c094d92be9ef
         }
     }
 }

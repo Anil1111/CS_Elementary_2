@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prise
+namespace PriceClass
 {
     class PriseSortByProductName
     {
-        public static void SortProductByName(ref Prise[] priseArray)
+        public static void SortProductByName(ref Price[] priseArray)
         {
-            List<Prise> tempList = priseArray.ToList().OrderBy(x => x.ProductName).ToList();
+            List<Price> tempList = priseArray.ToList().OrderBy(x => x.ProductName).ToList();
             priseArray = tempList.ToArray();
             Console.WriteLine("Array of products was sorted by product name");
         }

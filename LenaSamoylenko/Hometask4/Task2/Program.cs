@@ -11,7 +11,8 @@ namespace Task2
         static void Main(string[] args)
         {
             Pupil p1 = new ExcelentPupil("Ivan Ivanov");
-            ClassRoom class1A = new ClassRoom(p1);
+            Pupil p2 = new GoodPupil("Petr Zubov");
+            ClassRoom class1A = new ClassRoom(p1, p2);
             class1A.Print();
             Console.ReadKey();
         }
