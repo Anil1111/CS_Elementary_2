@@ -10,13 +10,8 @@ namespace Rectangle
     {
         static void Main(string[] args)
         {
-            Rectangle rectangle = new Rectangle();
-            Console.WriteLine("Please, enter length of the rectangle");
-            rectangle.side1 = double.Parse(Console.ReadLine());
-            Console.WriteLine("Please, enter width of the rectangle");
-            rectangle.side2 = double.Parse(Console.ReadLine());
-            Console.WriteLine("Area of the rectangle = "+rectangle.Area);
-            Console.WriteLine("Perimeter of the rectangle = "+ rectangle.Perimeter);
+            Rectangle rectangle = new Rectangle(10,5);
+            rectangle.Show();
             Console.ReadKey();
         }
     }

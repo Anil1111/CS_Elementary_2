@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,9 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Order.cs" />
-    <Compile Include="OrderInput.cs" />
-    <Compile Include="OrderTranzactionSumConditionPrint.cs" />
-    <Compile Include="OrderTranzactionSumSort.cs" />
+    <Compile Include="Orders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -19,6 +19,7 @@ namespace Inheritance
             : base(number1)
         {            
             derivedField = number2;
+
         }
     }
 }

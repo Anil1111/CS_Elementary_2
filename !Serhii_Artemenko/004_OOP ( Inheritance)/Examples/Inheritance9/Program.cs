@@ -7,6 +7,7 @@ namespace Inheritance
     class ClassA { /* ... */ }
 
     class ClassB : ClassA { /* ... */ }
+    class ClassC { }
 
     class Program
     {
@@ -14,6 +15,7 @@ namespace Inheritance
         {
             ClassB b = new ClassB();
             ClassA a = null;
+
 
             //--------------------------------------------- is --------------------------------------------- 
             // Оператор is - проверяет совместимость объекта с заданным типом. 
@@ -24,7 +26,7 @@ namespace Inheritance
 
             if (b is ClassA)
             {
-                a = (ClassA)b;
+                a = b;
             }
             else
             {

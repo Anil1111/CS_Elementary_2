@@ -8,7 +8,7 @@ namespace Inheritance
         public int baseNumber;
 
         // Конструктор по умолчанию.
-        public BaseClass() 
+        public BaseClass()
         {
         }
 

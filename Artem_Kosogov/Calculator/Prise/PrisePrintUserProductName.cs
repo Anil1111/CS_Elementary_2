@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prise
+namespace PriceClass
 {
     class PrisePrintUserProductName
     {
-        public static void PrintPriseUserProductName(Prise[] priseArray)
+        public static void PrintPriseUserProductName(Price[] priseArray)
         {
             Console.WriteLine("Please, enter the name of a product you want to know about");
             string temp = Console.ReadLine();

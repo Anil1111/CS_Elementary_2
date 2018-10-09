@@ -6,13 +6,27 @@ using System.Threading.Tasks;
 
 namespace BookClass
 {
-    class Title
+    class TitleOfBook
     {
-        public string title;
+        private string title;
+
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+        }
+
+        public TitleOfBook(string title)
+        {
+            this.title = title;
+        }
 
         public void Show()
         {
-            Console.WriteLine("Content: " + title, Console.ForegroundColor = ConsoleColor.Red);
+            Console.WriteLine("Title: " + Title, Console.ForegroundColor = ConsoleColor.Red);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

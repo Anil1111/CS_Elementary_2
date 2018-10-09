@@ -6,24 +6,30 @@ using System.Threading.Tasks;
 
 namespace BookClass
 {
-    class Book
+    class BookClass
     {
-        public void AddBook(string title, string author, string content)
+        TitleOfBook titleOfBook = null;
+        AuthorClass authorOfBook = null;
+        ContentOfBook contentOfBook = null;
+
+
+        public BookClass(string title, string author, string content)
         {
-            Title bookTitle = new Title();
-            Author bookAuthor = new Author();
-            Content bookContent = new Content();
-            bookTitle.title = title;
-            bookAuthor.author = author;
-            bookContent.content = content; 
+            Initializiar(title, author, content);
         }
 
-        public void Show(Title title, Author author, Content content)
+        public void Initializiar(string title, string author, string content)
         {
-            title.Show();
-            author.Show();
-            content.Show();
-            Console.ForegroundColor = ConsoleColor.Gray;
+            this.titleOfBook = new TitleOfBook(title);
+            this.authorOfBook = new AuthorClass(author);
+            this.contentOfBook = new ContentOfBook(content);
+        }
+
+        public void Show()
+        {
+            titleOfBook.Show();
+            authorOfBook.Show();
+            contentOfBook.Show();
         }
     }
 }
