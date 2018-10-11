@@ -10,6 +10,8 @@ namespace Task3
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+=======
             Prices prices = new Prices();
             Price price1 = new Price("Milk", "Varus", 21.9);
             Price price2 = new Price("Milk", "ATB", 20.9);
@@ -23,6 +25,7 @@ namespace Task3
             prices.nameOrder();
             prices.userConditionOrder();
             Console.ReadLine();
+>>>>>>> d97b4f3d2c90536bc82b1e9b6b94c094d92be9ef
         }
     }
 }

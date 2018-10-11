@@ -199,27 +199,37 @@ namespace ParseCalculator
                     {
                         case '^':
                             {
-                                res = Math.Pow(stack.Pop(), stack.Pop());
+                                double a = stack.Pop();
+                                double b = stack.Pop();
+                                res = Math.Pow(b,a);
                                 break;
                             }
                         case '*':
                             {
-                                res = stack.Pop() * stack.Pop();
+                                double a = stack.Pop();
+                                double b = stack.Pop();
+                                res = b * a;
                                 break;
                             }
                         case '/':
                             {
-                                res = stack.Pop() / stack.Pop();
+                                double a = stack.Pop();
+                                double b = stack.Pop();
+                                res = b / a;
                                 break;
                             }
                         case '-':
                             {
-                                res = stack.Pop() - stack.Pop();
+                                double a = stack.Pop();
+                                double b = stack.Pop();
+                                res = b - a;
                                 break;
                             }
                         case '+':
                             {
-                                res = stack.Pop() + stack.Pop();
+                                double a = stack.Pop();
+                                double b = stack.Pop();
+                                res = b + a;
                                 break;
                             }
                     }

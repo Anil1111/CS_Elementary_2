@@ -23,23 +23,18 @@ namespace Task4
             if (inputKey == key["Pro"])
             {
                 workWithDocument = new ProDocumentWorker();
-                workWithDocument.OpenDocument();
-                workWithDocument.EditDocument();
-                workWithDocument.SaveDocument();
+                Use(workWithDocument);
             }
             else if (inputKey == key["Exp"])
             {
                 workWithDocument = new ExpertDocumentWorker();
-                workWithDocument.OpenDocument();
-                workWithDocument.EditDocument();
-                workWithDocument.SaveDocument();
+                Use(workWithDocument);
             }
             else if (inputKey == key["UsuallUser"])
             {
                 workWithDocument = new DocumentWorker();
-                workWithDocument.OpenDocument();
-                workWithDocument.EditDocument();
-                workWithDocument.SaveDocument();
+                Use(workWithDocument);
+                
             }
             else
             {
@@ -49,7 +44,12 @@ namespace Task4
 
 
         }
-
+        static void Use(DocumentWorker document)
+        {
+            document.OpenDocument();
+            document.EditDocument();
+            document.SaveDocument();
+        }
 
         static class Helper
         {

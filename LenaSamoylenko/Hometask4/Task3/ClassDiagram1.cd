@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Task3.Vehicle">
-    <Position X="4" Y="2.25" Width="2" />
+    <Position X="4" Y="3" Width="2" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -32,7 +32,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Task3.Plane">
-    <Position X="6.25" Y="3" Width="1.5" />
+    <Position X="8" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Plane.cs</FileName>

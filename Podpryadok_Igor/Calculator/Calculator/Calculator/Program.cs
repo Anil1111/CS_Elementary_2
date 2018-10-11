@@ -1,4 +1,9 @@
 ﻿using System;
+<<<<<<< HEAD
+
+namespace Calculator
+{
+=======
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -172,14 +177,19 @@ namespace Calculator
         }
     }
 
+>>>>>>> d97b4f3d2c90536bc82b1e9b6b94c094d92be9ef
     class Program
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+            
+=======
 
             Console.Write("Введите выражение: ");
             Console.WriteLine(Calculator.Calculate(Console.ReadLine()));
             Console.ReadKey();
+>>>>>>> d97b4f3d2c90536bc82b1e9b6b94c094d92be9ef
         }
     }
 }

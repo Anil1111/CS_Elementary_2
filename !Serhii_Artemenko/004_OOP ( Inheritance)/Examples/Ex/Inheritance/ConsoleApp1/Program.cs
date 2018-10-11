@@ -31,35 +31,20 @@ namespace Inheritance
 
     }
 
-    class ClassA { }
-
-    class ClassB : ClassA { }
-
-    class ClassC : ClassA { }
-
     class Program
     {
         static void Main(string[] args)
         {
-            ClassA a = new ClassA();
-            ClassB b = new ClassB();
-            ClassC c = new ClassC();
-            ClassA d = (ClassA)b;
-
-
-
-
             Car car = new Car();
             Transport carAsTransport = (Transport)car; // upcast
 
             Car car1 = (Car)carAsTransport; // downcast
 
             var cet = (CombustionEngineTransport)(new Car());
-            if(cet is Car)
-            {
-                var cetAsCar = (Car)cet;
-            }
-            
+
+            var cetAsCar = (Car)cet;
+
+
         }
     }
 }
