@@ -8,15 +8,34 @@ namespace Task3
 {
     class DispatchcerRequest : MotorDepot
     {
-        public DispatchcerRequest(long requestNumber, string driver, string car, string dispatcher) : base(requestNumber, driver, car, dispatcher)
-        {
+        //чет не то(
+        private string dispatcher;
+        private string driver;
+        private string car;
+        private bool roadPermit = true;//разрешение на дорогу от диспетчера
 
+        public string Driver => driver;
+
+
+        //конструктор для создаия заявки от диспетчера
+        public DispatchcerRequest(string dispatcher, string motorDepotName) : base(motorDepotName)
+        {
+            this.dispatcher = dispatcher;
         }
+        public void AddRequest(long requestNumber, string driver, string car)
+        {
+            this.requestNumber = requestNumber;
+            this.driver = driver;
+            this.car = car;
+        }
+
         //метод для диспетчера о допущении водителя к работе
         public void RoadPermitFromDispatcher(bool roadPermit)
         {
-            RoadPermit = roadPermit;
+            this.roadPermit = roadPermit;
         }
+
+
 
     }
 }

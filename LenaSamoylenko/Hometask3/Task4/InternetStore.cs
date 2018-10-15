@@ -9,33 +9,44 @@ namespace Task4
     class InternetStore
     {
         private string storeName;
-        List<Product> AllProducts=new List<Product>();
-        List<Merchandise> AllSales = new List<Merchandise>();
-        List<object> AllOrders = new List<object>();
-        List<string> BlackList = new List<string>();
+        private List<Merchandise> allProducts = new List<Merchandise>();
+
+        public List<Klient> allOrders = new List<Klient>();
+        protected List<string> blackList = new List<string>();
         public string StoreName => storeName;
-        public InternetStore() { }
+
+        public List<Merchandise> AllProducts => allProducts;
+
+        //internal List<order> AllSales { get; set; }
+        internal List<string> BlackList { get; set; }
         public InternetStore(string storeName)
         {
             this.storeName = storeName;
         }
 
-       
-        public void RegistrationSale(Merchandise merchandise)
+        public void PrintProductList()
         {
-            AllSales.Add(merchandise);
+            int i = 1;
+            foreach (Merchandise p in AllProducts)
+            {
+                Console.WriteLine("Товар номер {3} - Наименование: {0}; Цена: {1}; Количество на складе:{2}", ((Product)p).ProductName, ((Product)p).Price, ((Product)p).ProductCount, i);
+                i++;
+            }
         }
-        public void AddClientToBlackList(Klient klient)
+
+        public void AddProduct(Merchandise product)
         {
-            BlackList.Add(klient.KlientName);
+            AllProducts.Add(product);
         }
-        public void AddOrder(Klient klient, Product product)
-        {
-            bool belongToBlackList = BlackList.Exists(e=>e.Equals(klient.KlientName));
-            if (belongToBlackList)
-            { Console.WriteLine("You could`t add the order"); }
-            AllOrders.Add($"klient"+ "product");
-            klient.KlientCount = -product.Price;
-        }
+
+
+        //public void AddOrder(Klient klient, Product product)
+        //{
+        //    bool belongToBlackList = BlackList.Exists(e=>e.Equals(klient.KlientName));
+        //    if (belongToBlackList)
+        //    { Console.WriteLine("You could`t add the order"); }
+        //    AllOrders.Add($"klient"+ "product");
+        //    klient.KlientCount = -product.Price;
+        //}
     }
 }
