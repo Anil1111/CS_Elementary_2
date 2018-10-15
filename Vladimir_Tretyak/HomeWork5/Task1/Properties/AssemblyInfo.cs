@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("HW3Task2")]
+[assembly: AssemblyTitle("HW5Task1")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HW3Task2")]
+[assembly: AssemblyProduct("HW5Task1")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("41f5fd4c-cf18-47b6-87e1-ce1933be24e7")]
+[assembly: Guid("74821de8-b90f-4551-b91b-dffd123fac3c")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
