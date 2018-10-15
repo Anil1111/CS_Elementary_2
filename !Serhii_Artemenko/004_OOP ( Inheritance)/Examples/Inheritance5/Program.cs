@@ -9,6 +9,7 @@ namespace Inheritance
         static void Main()
         {
             DerivedClass instance = new DerivedClass();
+            BaseClass baseClass = new DerivedClass();
 
             instance.field1 = 1;
             instance.field2 = 2;

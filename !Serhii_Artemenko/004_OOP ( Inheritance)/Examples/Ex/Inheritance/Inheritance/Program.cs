@@ -29,12 +29,12 @@ namespace Inheritance
 
     public static class ArrayExtensions
     {
-        public static void Swap(this Array array, int i, int j)
-        {
-            object temporary = array.GetValue(i);
-            array.SetValue(array.GetValue(i), j);
-            array.SetValue(temporary, j);
-        }
+        //public static void Swap(this Array array, int i, int j)
+        //{
+        //    object temporary = array.GetValue(i);
+        //    array.SetValue(array.GetValue(i), j);
+        //    array.SetValue(temporary, j);
+        //}
 
         public static void BubbleSort(this Array array)
         {
