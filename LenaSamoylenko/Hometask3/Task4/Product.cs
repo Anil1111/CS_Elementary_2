@@ -6,21 +6,16 @@ using System.Threading.Tasks;
 
 namespace Task4
 {
-    class Product: InternetStore
+    class Product : InternetStore
     {
-        private string productName;
-        private double price;
-        private long barcode;
-
+        protected string productName;
+        protected double price;
+        protected long barcode;
+        protected int productCount;
         public string ProductName => productName;
         public double Price => price;
-        public long Barcode=> barcode;
-        protected Product() { }
-        protected Product(string productName, double price, long barcode)
-        {
-            this.productName = productName;
-            this.price = price;
-            this.barcode = barcode;
-        }
+        public long Barcode => barcode;
+        public int ProductCount => productCount;
+        protected Product(string storeName) : base(storeName) { }
     }
 }
