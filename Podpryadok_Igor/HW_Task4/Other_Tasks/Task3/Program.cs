@@ -15,7 +15,15 @@ namespace Task3
     {
         static void Main(string[] args)
         {
+            Plane plane = new Plane(10, 10, 1000000, 1000, 2010, 750, 100);
+            Ship ship = new Ship(15, 15, 1500000, 500, 2018, 20, "Одесса");
+            Car car = new Car(20, 20, 15000, 220, 2017);
 
+            car.Show(car);
+            plane.Show(plane);
+            ship.Show(ship);
+
+            Console.ReadLine();
         }
     }
 }
