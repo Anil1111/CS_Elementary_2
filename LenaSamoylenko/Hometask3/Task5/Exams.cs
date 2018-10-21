@@ -9,6 +9,8 @@ namespace Task5
     class Exams : Exam
     {
         string[] groupOfExams = new string[3];
+        protected string faculthyName;
+        public string FaculthyName { get { return faculthyName; } }
         public string[] GroupOfExams => groupOfExams;
         public Exams(string ex1, string ex2, string ex3) 
         {

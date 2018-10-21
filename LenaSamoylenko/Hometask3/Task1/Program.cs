@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Hometask3
 {
@@ -10,6 +11,7 @@ namespace Hometask3
     {
         static void Main(string[] args)
         {
+            helpClass.CreateFileForExceptions();
             Time myDateTime = Program.Inizialization();
             helpClass.Print(myDateTime.DataTime);
 
@@ -18,8 +20,11 @@ namespace Hometask3
             myDateTime.addDateTimeSeconds = 1;
             helpClass.Print(myDateTime.DataTime);
 
+
+            myDateTime.ChangeData();
             Console.ReadKey();
         }
+
 
         public static Time Inizialization()
         {
@@ -35,13 +40,14 @@ namespace Hometask3
             try
             {
                 myDateTime = new Time(year, month, day, hours, minutes, seconds);
-
             }
-            catch
+            catch (Exception ex)
             {
                 myDateTime = null;
-                Console.WriteLine("Some error");
+                Console.WriteLine("Error:" + ex.Message);
+                System.IO.File.AppendAllText(@"D:\Exception\Exception.txt", "-----"+ex.Message+DateTime.Now);
                 Environment.Exit(0);
+                Console.ReadKey();
             }
             return myDateTime;
 
