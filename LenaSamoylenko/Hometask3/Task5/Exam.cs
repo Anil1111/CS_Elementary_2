@@ -9,7 +9,7 @@ namespace Task5
     class Exam: University
     {
        
-        public string EnrolleeName => enrolleeName;
+        //public string EnrolleeName => enrolleeName;
         public Exam() { }
         public Exam(string ex1) 
         {
