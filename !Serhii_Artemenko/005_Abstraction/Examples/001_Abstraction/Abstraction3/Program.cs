@@ -38,7 +38,7 @@ namespace Abstraction
             AbstractClassA instance = new ConcreteClass();
 
             instance.OperationA();
-
+            
             //instance.OperationB();  // Вопрос: почему недоступен данный метод?
 
             // Delay.
