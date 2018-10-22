@@ -10,12 +10,12 @@ namespace Rutishauser
     {
         protected static double AfterAlgoritm(string input)
         {
-            List<char> afterPars = ToParsString(input);
-            double result = Calculate( afterPars);
+            List<string> afterPars = ToParsString(input);
+            double result = Calculate(afterPars);
             return result;
         }
 
-        private static double Calculate( List<char> input)
+        private static double Calculate(List<string> input)
         {
             double result = 0;
             bool while1 = true;
@@ -25,25 +25,25 @@ namespace Rutishauser
                 int indexMax1 = 0;
                 double peremenayaMax2 = 0;
                 int indexMax2 = 0;
-                char operant = ' ';
+                string operant = string.Empty;
                 int max = 0;
                 int[] levels = Leveling(input);
 
                 for (int i = 0; i < input.Count; i++)
                 {
-                    if (input[i] == '(' || input[i] == ')')
+                    if (input[i] == "(" || input[i] == ")")
                     {
                         continue;
                     }
                     if (levels[i] > max)
                     {
                         max = levels[i];
-                        peremenayaMax1 = double.Parse(input[i].ToString());
+                        peremenayaMax1 = double.Parse(input[i]);
                         indexMax1 = i;
                     }
                     else if (levels[i] == max)
                     {
-                        peremenayaMax2 = double.Parse(input[i].ToString());
+                        peremenayaMax2 = double.Parse(input[i]);
                         operant = input[i - 1];
                         indexMax2 = i;
 
@@ -52,31 +52,31 @@ namespace Rutishauser
 
                 switch (operant)
                 {
-                    case '+':
-                        result += peremenayaMax1 + peremenayaMax2;
+                    case "+":
+                        result = peremenayaMax1 + peremenayaMax2;
                         input.RemoveRange(indexMax1 - 1, 5);
-                        char ch = char.Parse(result.ToString());
-                        input.Insert(indexMax1 - 1, ch);
+                        string st = result.ToString();
+                        input.Insert(indexMax1 - 1, st);
                         break;
-                    case '-':
-                        result += peremenayaMax1 - peremenayaMax2;
+                    case "-":
+                        result = peremenayaMax1 - peremenayaMax2;
                         input.RemoveRange(indexMax1 - 1, 5);
-                        char ch1 = char.Parse(result.ToString());
-                        input.Insert(indexMax1 - 1, ch1);
-                        break;
-
-                    case '*':
-                        result += peremenayaMax1 * peremenayaMax2;
-                        input.RemoveRange(indexMax1 - 1, 5);
-                        char ch2 = char.Parse(result.ToString());
-                        input.Insert(indexMax1 - 1, ch2);
+                        string st1 = result.ToString();
+                        input.Insert(indexMax1 - 1, st1);
                         break;
 
-                    case '/':
-                        result += peremenayaMax1 / peremenayaMax2;
+                    case "*":
+                        result = peremenayaMax1 * peremenayaMax2;
                         input.RemoveRange(indexMax1 - 1, 5);
-                        char ch3 = char.Parse(result.ToString());
-                        input.Insert(indexMax1 - 1, ch3);
+                        string st2 = result.ToString();
+                        input.Insert(indexMax1 - 1, st2);
+                        break;
+
+                    case "/":
+                        result = peremenayaMax1 / peremenayaMax2;
+                        input.RemoveRange(indexMax1 - 1, 5);
+                        string st3 = result.ToString();
+                        input.Insert(indexMax1 - 1, st3);
                         break;
                 }
 
@@ -88,7 +88,7 @@ namespace Rutishauser
             return result;
         }
 
-        private static int[] Leveling(List<char> input)
+        private static int[] Leveling(List<string> input)
         {
             int numberLevel = 0;
             int[] levels = new int[input.Count];
@@ -114,27 +114,37 @@ namespace Rutishauser
             return levels;
         }
 
-        private static List<char> ToParsString(string input)
+        private static List<string> ToParsString(string input)
         {
-            List<char> afterPars = new List<char>();
+            List<string> afterPars = new List<string>();
             for (int i = 0; i < input.Length; i++)
             {
-                afterPars.Add(input[i]);
+                if(input[i] == '(' || IsOperation(input[i]))
+                {
+                    afterPars.Add(input[i].ToString());
+                }
+                else if(input[i -1] == '(' || IsOperation(input[i-1]))
+                {
+                    afterPars.Add(input[i].ToString());
+                }
+                else
+                {
+                    afterPars[afterPars.Count -1] += input[i];
+                }
             }
-
             return afterPars;
         }
 
-        private static bool IsNumber(char c)
+        private static bool IsNumber(dynamic c)
         {
-            if ("(0123456789".IndexOf(c) != -1)
+            if ("(".IndexOf(c) != -1 || double.TryParse(c, out double a))
             {
                 return true;
             }
             return false;
         }
 
-        private static bool IsOperation(char c)
+        private static bool IsOperation(dynamic c)
         {
             if ("+-*/)".IndexOf(c) != -1)
             {

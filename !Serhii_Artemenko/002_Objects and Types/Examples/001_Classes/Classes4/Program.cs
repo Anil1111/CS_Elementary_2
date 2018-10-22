@@ -44,6 +44,16 @@ namespace Classes
             instance.Field = "hello world";
             Console.WriteLine(instance.Field);
 
+            Console.WriteLine(new string('-', 50));
+
+            instance.Field = "hi world";
+            Console.WriteLine(instance.Field);
+
+            Console.WriteLine(new string('-', 50));
+
+            instance.Field = "hi world";
+            Console.WriteLine(instance.Field);
+
             // Delay.
             Console.ReadKey();
         }

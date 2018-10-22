@@ -10,9 +10,9 @@ namespace Rutishauser
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите выражение: ");
-            Console.WriteLine(Calculate.Calculated(Console.ReadLine()));
-            Console.ReadLine();
+                Console.Write("Введите выражение: ");
+                Console.WriteLine(Calculate.Calculated(Console.ReadLine()));
+                Console.ReadLine();
         }
     }
 }
