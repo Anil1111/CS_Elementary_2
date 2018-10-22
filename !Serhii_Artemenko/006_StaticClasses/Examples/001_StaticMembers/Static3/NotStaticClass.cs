@@ -7,7 +7,7 @@ namespace Static
     class NotStaticClass
     {
         // Константы не могут быть статическими.
-        // public static const float e = 2.71828182845904523536f;
+       //  public static const float e = 2.71828182845904523536f;
 
         // Поле, не может быть объявлено как static const, поле const по своему поведению, уже является статическим.
         // Поле const относится к типу, а не к экземплярам типа.
