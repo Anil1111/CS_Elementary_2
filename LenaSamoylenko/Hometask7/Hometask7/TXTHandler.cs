@@ -3,24 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Diagnostics;
+
 
 namespace Hometask7
 {
     class TXTHandler : AbstractHandler
     {
-        public override void Chenge()
+        FileStream sr;
+        public override void Open(string fullName)
         {
-            throw new NotImplementedException();
+            sr = File.Open(fullName, FileMode.OpenOrCreate);
+            Console.ReadKey();
         }
 
-        public override void Create()
+        public override void Change(string fullName)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Put text that you want to add in this file");
+            byte[] text = Encoding.Unicode.GetBytes(Console.ReadLine());
+            sr.Write(text,0,text.Length);
         }
 
-        public override void Save()
+        public override void Create(string fullName)
         {
-            throw new NotImplementedException();
+            sr = new FileStream(fullName, FileMode.Create);
+        }
+
+
+        //???
+        public override void Save(string fullName)
+        {
+           
         }
     }
 }

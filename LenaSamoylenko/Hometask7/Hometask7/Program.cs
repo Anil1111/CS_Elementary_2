@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 
 namespace Hometask7
@@ -11,7 +12,7 @@ namespace Hometask7
     {
         static void Main(string[] args)
         {
-            
+
             Dictionary<int, string> allFormats = new Dictionary<int, string>(3);
             allFormats.Add(1, "doc");
             allFormats.Add(2, "txt");
@@ -26,10 +27,30 @@ namespace Hometask7
                 {
                     Console.WriteLine("Put your file location");
                     fileLocation = Console.ReadLine();
+                    TXTHandler classComponent;
                     string fileFormat = fileLocation.Split('.').Last();
 
                     fileFormatInDictionary = ((allFormats.Where(f => f.Value == fileFormat)).Select(f => f.Key)).First();
                     //как-то организовать проверку на файловую систему, слешы там и все такое
+
+                    //операции с классом в соответствии с выбранным форматом 
+                    
+                    switch (fileFormatInDictionary)
+                    {
+                        case 1:
+                            classComponent = new DOCHandler();
+                            break;
+                        case 2:
+                            classComponent = new TXTHandler();
+                            break;
+                        case 3:
+                            classComponent = new XMLHandler();
+                            break;
+                        default:
+                            Console.WriteLine("Error with put file, don`t known format");
+                            break;
+                    }
+                    classComponent.Open();
                 }
                 catch
                 {
