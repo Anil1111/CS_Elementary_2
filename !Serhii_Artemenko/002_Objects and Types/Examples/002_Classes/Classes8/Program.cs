@@ -14,6 +14,10 @@ namespace Classes
     {
         private MyClass1 myObj = null;
 
+        public MyClass2()
+        {
+            Console.WriteLine("Создан экземпляр класса MyClass2");
+        }
         // Данный метод не является фабричным.
         public void Method()
         {
