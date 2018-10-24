@@ -12,79 +12,34 @@ namespace Hometask7
     {
         static void Main(string[] args)
         {
-
-            Dictionary<int, string> allFormats = new Dictionary<int, string>(3);
-            allFormats.Add(1, "doc");
-            allFormats.Add(2, "txt");
-            allFormats.Add(3, "xml");
             bool operationBeggin = true;
 
             while (operationBeggin)
             {
-                string fileLocation;
-                int fileFormatInDictionary;
+                WorkWithFile firstSeance = new WorkWithFile();
+                //firstSeance.ExecuteOperationCreate();
+                //firstSeance.ExecuteOperationChange();
+                firstSeance.ExecuteOperationOpen();
+                firstSeance.ExecuteOperationSave();
+
+                //пример C:\1.xml
+
+                Console.WriteLine("Do you wan to continue true/false");
                 try
                 {
-                    Console.WriteLine("Put your file location");
-                    fileLocation = Console.ReadLine();
-                    TXTHandler classComponent;
-                    string fileFormat = fileLocation.Split('.').Last();
-
-                    fileFormatInDictionary = ((allFormats.Where(f => f.Value == fileFormat)).Select(f => f.Key)).First();
-                    //как-то организовать проверку на файловую систему, слешы там и все такое
-
-                    //операции с классом в соответствии с выбранным форматом 
-                    
-                    switch (fileFormatInDictionary)
-                    {
-                        case 1:
-                            classComponent = new DOCHandler();
-                            break;
-                        case 2:
-                            classComponent = new TXTHandler();
-                            break;
-                        case 3:
-                            classComponent = new XMLHandler();
-                            break;
-                        default:
-                            Console.WriteLine("Error with put file, don`t known format");
-                            break;
-                    }
-                    classComponent.Open();
+                    operationBeggin = Convert.ToBoolean(Console.ReadLine());
                 }
                 catch
                 {
-                    Console.WriteLine("Error");
+                    Console.WriteLine("Error with the answer");
                     break;
                 }
-
-                //пример C:\Users\Admin\Documents\проба пера1.txt
-
-                switch (fileFormatInDictionary)
-                {
-                    case 1:
-                        DOCHandler user1 = new DOCHandler();
-                        user1.Open(fileLocation);
-                        break;
-                    case 2:
-                        TXTHandler user2 = new TXTHandler();
-                        user2.Open(fileLocation);
-                        break;
-                    case 3:
-                        XMLHandler user3 = new XMLHandler();
-                        user3.Open(fileLocation);
-                        break;
-                    default:
-                        Console.WriteLine("Some error");
-                        break;
-                }
-
-
-                Console.ReadKey();
-
-
             }
 
+            Console.ReadKey();
+
         }
+
     }
 }
+

@@ -12,8 +12,6 @@ namespace Hometask7
     abstract class AbstractHandler
     {
         public abstract void Open(string fullName);
-
-
         public abstract void Create(string fullName);
         public abstract void Change(string fullName);
         public abstract void Save(string fullName);

@@ -14,27 +14,29 @@ namespace Hometask7
         FileStream sr;
         public override void Open(string fullName)
         {
-            sr = File.Open(fullName, FileMode.OpenOrCreate);
-            Console.ReadKey();
+            //sr = File.Open(FullName, FileMode.OpenOrCreate);
+            //Console.ReadKey();
         }
 
         public override void Change(string fullName)
         {
-            Console.WriteLine("Put text that you want to add in this file");
-            byte[] text = Encoding.Unicode.GetBytes(Console.ReadLine());
-            sr.Write(text,0,text.Length);
+            //Console.WriteLine("Put text that you want to add in this file");
+            //byte[] text = Encoding.Unicode.GetBytes(Console.ReadLine());
+            //sr.Write(text,0,text.Length);
         }
 
         public override void Create(string fullName)
         {
-            sr = new FileStream(fullName, FileMode.Create);
+            //sr = new FileStream(FullName, FileMode.Create);
+        }
+
+        
+        public override void Save(string fullName)
+        {
+            throw new NotImplementedException();
         }
 
 
         //???
-        public override void Save(string fullName)
-        {
-           
-        }
     }
 }
