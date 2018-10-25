@@ -28,11 +28,12 @@ namespace InputOutput
                         
             try
             {
+                int i = 0;
                 // Удаление каталогов.
-                Directory.Delete(@".\SUBDIR");
+                //Directory.Delete(@".\SUBDIR");
 
                 // Второй параметр определяет, будут ли удалены также и все вложенные подкаталоги. 
-                Directory.Delete(@"D:\TESTDIR\MyDir", true);
+                Directory.Delete(@"c:\bin\MyDir", true);
 
                 Console.WriteLine("Каталоги успешно удалены.");
             }

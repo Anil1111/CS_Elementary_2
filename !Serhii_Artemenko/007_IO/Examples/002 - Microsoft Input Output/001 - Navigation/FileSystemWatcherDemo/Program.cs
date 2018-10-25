@@ -11,11 +11,12 @@ namespace FileSystemWatcherDemo
         static void Main()
         {
             // Создание наблюдателя и сосредоточение его внимания на системном диске.
-            var watcher = new FileSystemWatcher { Path = @"." };
+            var watcher = new FileSystemWatcher { Path = @"c:\bin" };
 
             // Зарегистрировать обработчики событий.
             watcher.Created += new FileSystemEventHandler(WatcherChanged);
-          //  watcher.Deleted += WatcherChanged;
+            watcher.Deleted += WatcherChanged;
+            watcher.Renamed += Watcher_Renamed;
 
             // Начать мониторинг.
             watcher.EnableRaisingEvents = true;
@@ -23,6 +24,13 @@ namespace FileSystemWatcherDemo
             // Delay.
             var change = watcher.WaitForChanged(WatcherChangeTypes.All);
             Console.WriteLine(change.ChangeType);
+
+            Console.ReadLine();
+        }
+
+        private static void Watcher_Renamed(object sender, RenamedEventArgs e)
+        {
+            Console.WriteLine("Directory renamed({0}): {1}", e.ChangeType, e.FullPath);
         }
 
         // Обработчик события.

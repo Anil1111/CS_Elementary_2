@@ -10,12 +10,12 @@ namespace InputOutput
 		static void Main()
 		{
 			// Создаем новый файл в корневом каталоге диска D:
-			var file = new FileInfo(@"D:\Test.txt");
+			var file = new FileInfo(@"c:\bin\Test.txt");
 			
 			// FileMode.OpenOrCreate - ЕСЛИ: существует ТО: открыть ИНАЧЕ: создать новый
 			// FileAccess.Read - только для чтения,
 			// FileShare.None - Совместный доступ - Нет.
-			FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.Read, FileShare.None);
+			FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
 
 			// Выводим основную информацию о созданном файле.            
 			Console.WriteLine("Full Name   : {0}", file.FullName);

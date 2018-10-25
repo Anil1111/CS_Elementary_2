@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 
 // Создание директорий.
 
@@ -9,7 +10,7 @@ namespace InputOutput
     {
         static void Main()
         {            
-            var directory = new DirectoryInfo(@".");
+            var directory = new DirectoryInfo(@"c:\bin");
             Console.WriteLine(directory.FullName);
             // Создание в TESTDIR новых подкаталогов.
             if (directory.Exists)
@@ -19,7 +20,11 @@ namespace InputOutput
 
                 // Создаем D:\TESTDIR\MyDir\SubMyDir.
                 directory.CreateSubdirectory(@"MyDir\SubMyDir");
-
+                var directory1 = new DirectoryInfo(@"c:\bin\MyDir\SubMyDir");
+                Console.WriteLine(directory1.CreationTime);
+                directory.CreateSubdirectory(@"MyDir\SubMyDir");
+                Thread.Sleep(5000);
+                Console.WriteLine(directory1.CreationTime);
                 Console.WriteLine("Директории созданы.");
             }
             else
