@@ -14,17 +14,16 @@ namespace Hometask7
         private string fullName;
         public string FullName => fullName;
 
-        public AbstractHandler AbstractHandler  => _abstractHandler;
+        public AbstractHandler AbstractHandler => _abstractHandler;
 
         public WorkWithFile()
         {
-            Dictionary<int, string> allFormats = new Dictionary<int, string>(3);
-            allFormats.Add(1, "doc");
-            allFormats.Add(2, "txt");
-            allFormats.Add(3, "xml");
+            Dictionary<int, string> allFormats = new Dictionary<int, string>(3)
+            { { 1, "doc" },  { 2, "txt" },  { 3, "xml" } };
             Console.WriteLine("Put full file name");
-            //fullName = Console.ReadLine();
-            fullName = @"C:\Users\Lena\Documents\Task3\1.xml";
+            fullName = Console.ReadLine();
+
+            //fullName = "C:\\Users\\Admin\\Documents\\Test\\1.xml";
             string fileFormat = fullName.Split('.').Last();
             int fileFormatInDictionary = ((allFormats.Where(f => f.Value == fileFormat)).Select(f => f.Key)).First();
             //как-то организовать проверку на файловую систему, слешы там и все такое
@@ -75,6 +74,13 @@ namespace Hometask7
         {
             _abstractHandler.Change(fullName);
 
+        }
+
+        public static bool ContinueAddText()
+        {
+            Console.WriteLine("Do you wan to continue changing (true/false)");
+            bool continueAdd = Convert.ToBoolean(Console.ReadLine());
+            return continueAdd;
         }
     }
 }
