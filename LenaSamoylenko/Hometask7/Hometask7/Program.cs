@@ -17,11 +17,11 @@ namespace Hometask7
             while (operationBeggin)
             {
                 WorkWithFile firstSeance = new WorkWithFile();
-                // firstSeance.ExecuteOperationCreate();
+                firstSeance.ExecuteOperationCreate();
                 //firstSeance.ExecuteOperationChange();
-                firstSeance.ExecuteOperationOpen();
+                //firstSeance.ExecuteOperationOpen();
                 //firstSeance.ExecuteOperationSave();
-
+                
 
                 Console.WriteLine("Do you wan to continue work with files (true/false)");
                 try
