@@ -35,6 +35,7 @@ namespace Static
             Console.WriteLine("Перегруженный статический метод, неcтатического NotStaticClass " + s);
         }
 
+
         // Нестатический метод.
         public void NotStaticMethod()
         {

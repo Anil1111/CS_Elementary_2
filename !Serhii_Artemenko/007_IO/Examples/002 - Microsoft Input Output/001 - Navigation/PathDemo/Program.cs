@@ -10,7 +10,7 @@ namespace PathDemo
 		static void Main()
 		{
 			// Создание строки, содержащей адрес.
-			string path = @"C:\Windows\notepad.exe";
+			string path = @"C:\bin\test.txt";
 			Console.WriteLine(path);
 
 			// Вывод на экран значений свойств класса-объекта Path.
@@ -18,7 +18,7 @@ namespace PathDemo
 
 			// ChangeExtension не изменяет расширение у файла — он просто создает строку с другим расширением, 
 			// которую вы сами должны использовать для реального переименования (например, через статический метод Move класса File) 
-			Console.WriteLine("Change Path: {0}", path = Path.ChangeExtension(path, "bak"));
+			Console.WriteLine("Change Path: {0}", path = Path.ChangeExtension(path, "md"));
 			Console.WriteLine(path);
 						
 			// Delay.

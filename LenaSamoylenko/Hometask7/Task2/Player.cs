@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.DirectX.AudioVideoPlayback;
+using Vlc.DotNet.Core;
 
 namespace Task2
 {
     class Player : IPlayable, IRecordable
     {
+        VlcMedia vlcMedia;
+
+
+
         void IPlayable.Pause()
         {
-            throw new NotImplementedException();
+
         }
 
         void IRecordable.Pause()
@@ -21,7 +25,8 @@ namespace Task2
 
         void IPlayable.Play()
         {
-            throw new NotImplementedException();
+            vlcMedia.URL = @"C:\Дживс и Вустер - Jeeves and Wooster[DVDRip - AVC, 1990 - 1993]\s01e01.Jeeves Takes Charge.DVDRip - AVC.Rus.Eng.mkv";
+            vlcMedia.
         }
 
         void IRecordable.Record()

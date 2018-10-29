@@ -10,11 +10,14 @@ namespace InputOutput
         static void Main()
         {
             // Создаем новый файл в корневом каталоге диска D:
-            var file = new FileInfo(@".\Test.txt");
+
+            //new FileInfo(@"c:\bin\Test.txt").Create();
+
+            var file = new FileInfo(@"c:\bin\Test.txt");
 
             FileStream stream = file.Create();
-   
-            // Выводим основную информацию о созданном файле.            
+
+            //Выводим основную информацию о созданном файле.            
             Console.WriteLine("Full Name   : {0}", file.FullName);
             Console.WriteLine("Attributes  : {0}", file.Attributes.ToString());
             Console.WriteLine("CreationTime: {0}", file.CreationTime);

@@ -11,32 +11,49 @@ namespace Hometask7
 {
     class TXTHandler : AbstractHandler
     {
-        FileStream sr;
+
         public override void Open(string fullName)
         {
-            //sr = File.Open(FullName, FileMode.OpenOrCreate);
-            //Console.ReadKey();
+            using (StreamReader txt = new StreamReader(fullName, System.Text.Encoding.Default))
+            {
+                string line;
+                while ((line = txt.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+                Console.WriteLine("------Opening was done------");
+
+            }
         }
 
         public override void Change(string fullName)
         {
-            //Console.WriteLine("Put text that you want to add in this file");
-            //byte[] text = Encoding.Unicode.GetBytes(Console.ReadLine());
-            //sr.Write(text,0,text.Length);
+            using (StreamWriter txt = new StreamWriter(fullName, true, System.Text.Encoding.Default))
+            {
+                bool continueAddText = true;
+                while (continueAddText)
+                {
+                    Console.WriteLine("Put one line to add into document");
+                    txt.WriteLine(Console.ReadLine());
+                    continueAddText = WorkWithFile.ContinueAddText();
+                }
+
+                Console.WriteLine("------Changing was done------");
+                txt.Close();
+            }
+
         }
 
-        public override void Create(string fullName)
-        {
-            //sr = new FileStream(FullName, FileMode.Create);
-        }
 
-        
         public override void Save(string fullName)
         {
-            throw new NotImplementedException();
+            StreamWriter txt = new StreamWriter(fullName);
+            txt.Close();
+            Console.WriteLine("------Saving was done------");
+
         }
 
 
-        //???
+
     }
 }

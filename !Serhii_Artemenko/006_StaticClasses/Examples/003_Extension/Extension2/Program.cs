@@ -21,6 +21,8 @@ namespace Extension
             string text = "Hello ";
                         
             text.ExtensionMethod("world!");
+
+            "Hello".ExtensionMethod(" World!");
             
             // Delay.
             Console.ReadKey();

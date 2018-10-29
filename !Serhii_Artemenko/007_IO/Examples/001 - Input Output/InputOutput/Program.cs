@@ -20,9 +20,10 @@ namespace InputOutput
                 Console.WriteLine("Name          : {0}", directory.Name);                  // Имя директории, (НЕ включая путь).
                 Console.WriteLine("Parent        : {0}", directory.Parent);                // Родительская директория. 
                 Console.WriteLine("CreationTime  : {0}", directory.CreationTime);          // Время создания директории.
-                Console.WriteLine("Attributes    : {0}", directory.Attributes.ToString()); // Аттрибуты.
+                Console.WriteLine("Attributes    : {0}", directory.Attributes);            // Аттрибуты.
                 Console.WriteLine("Root          : {0}", directory.Root);                  // Корневой диск, на котором находится директория.
                 Console.WriteLine("LastAccessTime: {0}", directory.LastAccessTime);        // Время последнего доступа к директории.
+                Console.WriteLine("LastAccessTimeUtc: {0}", directory.LastAccessTimeUtc);
                 Console.WriteLine("LastWriteTime : {0}", directory.LastWriteTime);         // Время последнего изменения файлов в директории.                 
             }
             else

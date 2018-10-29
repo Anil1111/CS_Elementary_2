@@ -8,8 +8,9 @@ namespace Extension
 {
     static class ExtensionClass
     {
-        public static void Add(this int summand1, ref int summand2, out int sum)
+        public static void Add(this ref int summand1, ref int summand2, out int sum)
         {
+            summand2 = 5;
             sum = summand1 + summand2;
             Console.WriteLine("{0} + {1} = {2}", summand1, summand2, sum);
         }

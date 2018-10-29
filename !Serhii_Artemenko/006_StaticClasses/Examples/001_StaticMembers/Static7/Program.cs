@@ -9,10 +9,10 @@ namespace Static
         static void Main()
         {
             // 1 Вариант. (Вызывается только Статический конструктор.)
-            NotStaticClass.StaticMethod();
+            //NotStaticClass.StaticMethod();
 
             // 2 Вариант. (Вызываются оба Конструктора.)
-            //new NotStaticClass().NotStaticMethod();
+            new NotStaticClass().NotStaticMethod();
 
             // Delay.
             Console.ReadKey();

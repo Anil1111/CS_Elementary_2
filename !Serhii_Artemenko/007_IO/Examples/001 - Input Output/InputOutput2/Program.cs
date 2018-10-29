@@ -12,7 +12,7 @@ namespace InputOutput
     {
         static void Main()
         {
-            var directory = new DirectoryInfo(@".");
+            var directory = new DirectoryInfo(@"c:\bin");
            
            
             // Проверка на существование указанной директории.
@@ -28,7 +28,7 @@ namespace InputOutput
                 Console.Write("\n");
                 
                 // Получаем все файлы с расширением .txt.
-                FileInfo[] files = directory.GetFiles("*.txt");
+                FileInfo[] files = directory.GetFiles("*.*", SearchOption.AllDirectories);
 
                 // Сколько файлов с расширением .txt в данной директории.
                 Console.WriteLine("Найдено {0} *.txt файлов\n", files.Length);

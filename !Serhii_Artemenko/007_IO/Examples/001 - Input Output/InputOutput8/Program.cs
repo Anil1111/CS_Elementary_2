@@ -13,7 +13,7 @@ namespace InputOutput
             var memory = new MemoryStream();
 
             //  Задаем требуемый объем памяти.
-         //   memory.Capacity = 256;
+            memory.Capacity = 25;
 
             // Записываем байты в поток.
             for (var i = 0; i < 256; i++)

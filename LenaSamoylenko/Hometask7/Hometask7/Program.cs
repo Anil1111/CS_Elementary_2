@@ -17,14 +17,13 @@ namespace Hometask7
             while (operationBeggin)
             {
                 WorkWithFile firstSeance = new WorkWithFile();
-                //firstSeance.ExecuteOperationCreate();
+                // firstSeance.ExecuteOperationCreate();
                 //firstSeance.ExecuteOperationChange();
                 firstSeance.ExecuteOperationOpen();
-                firstSeance.ExecuteOperationSave();
+                //firstSeance.ExecuteOperationSave();
 
-                //пример C:\1.xml
 
-                Console.WriteLine("Do you wan to continue true/false");
+                Console.WriteLine("Do you wan to continue work with files (true/false)");
                 try
                 {
                     operationBeggin = Convert.ToBoolean(Console.ReadLine());
@@ -35,8 +34,6 @@ namespace Hometask7
                     break;
                 }
             }
-
-            Console.ReadKey();
 
         }
 

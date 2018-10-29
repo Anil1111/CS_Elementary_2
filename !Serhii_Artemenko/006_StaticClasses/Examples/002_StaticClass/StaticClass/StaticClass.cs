@@ -12,14 +12,14 @@
 
 namespace Static
 {
-    static class StaticClass //: object  // Наследование только от Object (явно или неявно)
+    static class StaticClass //: Object  // Наследование только от Object (явно или неявно)
     {
+        
         // Контруктор экземпляра - недопустим.
         // public StaticClass()
         // {
         //    Console.WriteLine("Constructor.");
         // }
-
         // Статический конструктор.
         static StaticClass()
         {
@@ -29,6 +29,7 @@ namespace Static
         // Статический метод.
         public static void StaticMethod()
         {
+            int i = 0;
             Console.WriteLine("StaticMethod");
         }
 

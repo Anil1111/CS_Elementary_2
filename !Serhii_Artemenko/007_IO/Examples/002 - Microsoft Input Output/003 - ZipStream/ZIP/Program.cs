@@ -10,8 +10,8 @@ namespace ZIP
 		static void Main()
 		{
 			// Создание файла и архива.
-			FileStream source = File.OpenRead(@"D:\test.txt");
-			FileStream destination = File.Create(@"D:\archive.zip");
+			FileStream source = File.OpenRead(@"c:\bin\test.txt");
+			FileStream destination = File.Create(@"c:\bin\archive.zip");
 
 			// Создание компрессора.
 			GZipStream compressor = new GZipStream(destination, CompressionMode.Compress);
