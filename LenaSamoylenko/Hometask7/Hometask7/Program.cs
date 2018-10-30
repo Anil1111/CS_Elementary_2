@@ -17,9 +17,9 @@ namespace Hometask7
             while (operationBeggin)
             {
                 WorkWithFile firstSeance = new WorkWithFile();
-                firstSeance.ExecuteOperationCreate();
+                //firstSeance.ExecuteOperationCreate();
                 //firstSeance.ExecuteOperationChange();
-                //firstSeance.ExecuteOperationOpen();
+                firstSeance.ExecuteOperationOpen();
                 //firstSeance.ExecuteOperationSave();
                 
 

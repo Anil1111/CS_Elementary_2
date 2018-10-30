@@ -16,11 +16,19 @@ namespace Task3
 
 
             Workers workers = new Workers(worker1);
-            workers.addWorkerToList();
-            workers = new Workers(worker2);
-            workers.addWorkerToList();
-            workers = new Workers(worker3);
-            workers.addWorkerToList();
+            workers.addWorkerToList(worker1);
+            workers.addWorkerToList(worker2);
+            workers.addWorkerToList(worker3);
+
+
+            List<Payment> workers1 = workers.SortWorkersInListByName();
+            workers.Print(workers1);
+
+            Console.WriteLine("\nAnother order\n");
+
+            List<Payment> workers2 = workers.SortWorkersInListBySalary();
+            workers.Print(workers2);
+            Console.ReadKey();
         }
     }
 }

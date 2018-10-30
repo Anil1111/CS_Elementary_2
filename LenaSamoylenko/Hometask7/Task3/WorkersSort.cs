@@ -8,7 +8,7 @@ namespace Task3
 {
     interface IWorkersSort
     {
-        List<Payment> SortWorkersInListByName(List<Payment> workers);
-        List<Payment> SortWorkersInListBySalary(List<Payment> workers);
+        List<Payment> SortWorkersInListByName();
+        List<Payment> SortWorkersInListBySalary();
     }
 }

@@ -26,24 +26,24 @@ namespace Task3
             _payment.AvaregeMonthPayment();
         }
 
-        public void addWorkerToList()
+        public void addWorkerToList(Payment payment)
         {
-            workers.Add(_payment);
+            workers.Add(payment);
         }
 
 
-        public List<Payment> SortWorkersInListByName(List<Payment> workers)
+        public List<Payment> SortWorkersInListByName()
         {
             List<Payment> result = new List<Payment>();
             workers.OrderByDescending(f => f.fullName);
-            //result = workers.OrderBy(f => f.fullName).ToList();
+            result = workers.OrderBy(f => f.fullName).ToList();
             return result;
         }
 
-        public List<Payment> SortWorkersInListBySalary(List<Payment> workers)
+        public List<Payment> SortWorkersInListBySalary()
         {
             List<Payment> result = new List<Payment>();
-            result = workers.OrderBy(x => x.avaregePaymentForWorker);
+            result = workers.OrderBy(x => x.avaregePaymentForWorker).ToList();
             return result;
         }
 
@@ -51,7 +51,7 @@ namespace Task3
         {
             foreach (var p in list)
             {
-                Console.WriteLine(p.fullName, p.avaregePaymentForWorker);
+                Console.WriteLine(p.fullName+"\t"+p.avaregePaymentForWorker);
             }
         }
     }
