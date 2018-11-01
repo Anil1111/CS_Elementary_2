@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace Paint_HW05.Context
 {
-    class WorkWithFigures
+    class WorkWithFigures:Figure
     {
         private Figure _figureType;
 
