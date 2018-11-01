@@ -21,13 +21,12 @@ namespace Hometask7
             Dictionary<int, string> allFormats = new Dictionary<int, string>(3)
             { { 1, "doc" },  { 2, "txt" },  { 3, "xml" } };
             Console.WriteLine("Put full file name");
-            fullName = Console.ReadLine();
+            //fullName = Console.ReadLine();
 
-            //fullName = "C:\\Users\\Admin\\Documents\\Test\\1.xml";
+            fullName = "C:\\Users\\Admin\\Documents\\Test\\1.doc";
             string fileFormat = fullName.Split('.').Last();
             int fileFormatInDictionary = ((allFormats.Where(f => f.Value == fileFormat)).Select(f => f.Key)).First();
-            //как-то организовать проверку на файловую систему, слешы там и все такое
-
+            
             //операции с классом в соответствии с выбранным форматом 
 
             switch (fileFormatInDictionary)

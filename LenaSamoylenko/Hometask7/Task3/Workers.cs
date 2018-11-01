@@ -6,7 +6,53 @@ using System.Threading.Tasks;
 
 namespace Task3
 {
-    class Workers:Worker
+    class Workers : IWorkersSort
     {
+        List<Payment> workers = new List<Payment>();
+        private Payment _payment;
+        public Workers(Payment payment)
+        {
+            _payment = payment;
+        }
+
+        public void changePayment(Payment payment)
+        {
+            _payment = payment;
+        }
+
+        //автоматически определяется в конструкторе, но пусть будет
+        private void AvarageMount()
+        {
+            _payment.AvaregeMonthPayment();
+        }
+
+        public void addWorkerToList(Payment payment)
+        {
+            workers.Add(payment);
+        }
+
+
+        public List<Payment> SortWorkersInListByName()
+        {
+            List<Payment> result = new List<Payment>();
+            workers.OrderByDescending(f => f.fullName);
+            result = workers.OrderBy(f => f.fullName).ToList();
+            return result;
+        }
+
+        public List<Payment> SortWorkersInListBySalary()
+        {
+            List<Payment> result = new List<Payment>();
+            result = workers.OrderBy(x => x.avaregePaymentForWorker).ToList();
+            return result;
+        }
+
+        public void Print(List<Payment> list)
+        {
+            foreach (var p in list)
+            {
+                Console.WriteLine(p.fullName+"\t"+p.avaregePaymentForWorker);
+            }
+        }
     }
 }

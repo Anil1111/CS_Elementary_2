@@ -9,5 +9,7 @@ namespace Task3
     abstract class Payment
     {
         public abstract double AvaregeMonthPayment();
+        public double avaregePaymentForWorker;
+        public string fullName;
     }
 }

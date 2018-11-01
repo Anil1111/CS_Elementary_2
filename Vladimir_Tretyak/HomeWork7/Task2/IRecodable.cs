@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task3
+namespace Player
 {
-    class Worker
+    interface IRecodable
     {
-        public Worker()
-        {
-
-        }
-
+        void Record();
+        void PauseRec();
+        void StopRec();
     }
 }
