@@ -8,6 +8,8 @@ namespace Static
     {
         static void Main()
         {
+            NotStaticClass notStaticClass = new NotStaticClass();
+
             Console.WriteLine("e = {0}", NotStaticClass.e);
 
             // Delay.

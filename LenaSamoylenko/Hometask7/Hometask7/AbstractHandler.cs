@@ -4,22 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 
 namespace Hometask7
 {
     abstract class AbstractHandler
     {
-        public virtual void Open(string location)
+        public abstract void Open(string fullName);
+        public virtual void Create(string fullName)
         {
-            
-            StreamReader sr = new StreamReader(@location);
-            //написать само открытие файла
-            Console.ReadKey();
+            var myfile=File.Create(fullName);
+            myfile.Close();
+            Console.WriteLine("------Creating was done------");
         }
-            
-        public abstract void Create();
-        public abstract void Chenge();
-        public abstract void Save();
+        public abstract void Change(string fullName);
+        public abstract void Save(string fullName);
     }
 }

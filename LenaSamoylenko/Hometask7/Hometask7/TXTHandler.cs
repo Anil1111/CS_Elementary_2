@@ -3,24 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Diagnostics;
+
 
 namespace Hometask7
 {
     class TXTHandler : AbstractHandler
     {
-        public override void Chenge()
+
+        public override void Open(string fullName)
         {
-            throw new NotImplementedException();
+            using (StreamReader txt = new StreamReader(fullName, System.Text.Encoding.Default))
+            {
+                string line;
+                while ((line = txt.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+                Console.WriteLine("------Opening was done------");
+
+            }
         }
 
-        public override void Create()
+        public override void Change(string fullName)
         {
-            throw new NotImplementedException();
+            using (StreamWriter txt = new StreamWriter(fullName, true, System.Text.Encoding.Default))
+            {
+                bool continueAddText = true;
+                while (continueAddText)
+                {
+                    Console.WriteLine("Put one line to add into document");
+                    txt.WriteLine(Console.ReadLine());
+                    continueAddText = WorkWithFile.ContinueAddText();
+                }
+
+                Console.WriteLine("------Changing was done------");
+                txt.Close();
+            }
+
         }
 
-        public override void Save()
+
+        public override void Save(string fullName)
         {
-            throw new NotImplementedException();
+            StreamWriter txt = new StreamWriter(fullName);
+            txt.Close();
+            Console.WriteLine("------Saving was done------");
+
         }
+
+
+
     }
 }

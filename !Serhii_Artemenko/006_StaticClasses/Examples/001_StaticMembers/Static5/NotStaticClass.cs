@@ -24,9 +24,15 @@ namespace Static
             get { return NotStaticClass.readonlyField; }
         }
 
+        public NotStaticClass()
+        {
+            Console.WriteLine("NotStaticClass.Ctor");
+        }
+
         // Статический конструктор.        
         static NotStaticClass()
         {
+            Console.WriteLine("NotStaticClass.StaticCtor");
             readonlyField = 1;
         }
     }

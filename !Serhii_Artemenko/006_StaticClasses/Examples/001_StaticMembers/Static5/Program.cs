@@ -8,6 +8,9 @@ namespace Static
     {
         static void Main()
         {
+            NotStaticClass notStaticClass = new NotStaticClass();
+            NotStaticClass notStaticClass2 = new NotStaticClass();
+
             Console.WriteLine(NotStaticClass.ReadonlyField);
 
             // Delay.

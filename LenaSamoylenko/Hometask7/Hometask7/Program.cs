@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 
 namespace Hometask7
@@ -11,59 +12,31 @@ namespace Hometask7
     {
         static void Main(string[] args)
         {
-            
-            Dictionary<int, string> allFormats = new Dictionary<int, string>(3);
-            allFormats.Add(1, "doc");
-            allFormats.Add(2, "txt");
-            allFormats.Add(3, "xml");
             bool operationBeggin = true;
 
             while (operationBeggin)
             {
-                string fileLocation;
-                int fileFormatInDictionary;
+                WorkWithFile firstSeance = new WorkWithFile();
+                //firstSeance.ExecuteOperationCreate();
+                //firstSeance.ExecuteOperationChange();
+                firstSeance.ExecuteOperationOpen();
+                //firstSeance.ExecuteOperationSave();
+                
+
+                Console.WriteLine("Do you wan to continue work with files (true/false)");
                 try
                 {
-                    Console.WriteLine("Put your file location");
-                    fileLocation = Console.ReadLine();
-                    string fileFormat = fileLocation.Split('.').Last();
-
-                    fileFormatInDictionary = ((allFormats.Where(f => f.Value == fileFormat)).Select(f => f.Key)).First();
-                    //как-то организовать проверку на файловую систему, слешы там и все такое
+                    operationBeggin = Convert.ToBoolean(Console.ReadLine());
                 }
                 catch
                 {
-                    Console.WriteLine("Error");
+                    Console.WriteLine("Error with the answer");
                     break;
                 }
-
-                //пример C:\Users\Admin\Documents\проба пера1.txt
-
-                switch (fileFormatInDictionary)
-                {
-                    case 1:
-                        DOCHandler user1 = new DOCHandler();
-                        user1.Open(fileLocation);
-                        break;
-                    case 2:
-                        TXTHandler user2 = new TXTHandler();
-                        user2.Open(fileLocation);
-                        break;
-                    case 3:
-                        XMLHandler user3 = new XMLHandler();
-                        user3.Open(fileLocation);
-                        break;
-                    default:
-                        Console.WriteLine("Some error");
-                        break;
-                }
-
-
-                Console.ReadKey();
-
-
             }
 
         }
+
     }
 }
+
