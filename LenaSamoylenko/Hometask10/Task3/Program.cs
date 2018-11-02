@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Task3
 {
-    public delegate int MainDelegate(int startData);
+    public delegate int MainDelegate();
     public delegate int AnonimDelegate(List<MainDelegate> mainDelegates);
 
     class Program
@@ -15,34 +15,50 @@ namespace Task3
 
             List<MainDelegate> listDelegate = null;
 
+            listDelegate = workWithDelegate.Fill(4);
 
             AnonimDelegate anonimDelegate = new AnonimDelegate(
                 (List<MainDelegate> mainDelegates) =>
             {
-                int startData = Convert.ToInt32(Console.ReadLine());
-                MainDelegate mD = new MainDelegate(
-                    (int sD) =>
-                    {
-
-                        int x = Convert.ToInt32(Console.ReadLine());
-                        return (sD + x);
-                    });
-                Console.WriteLine("Put");
-
-
-                mD.Invoke(startData);
+                
                 int result = 0;
                 for (int i = 0; i < mainDelegates.Count; i++)
                 {
-                    
+                    result = result + mainDelegates[i].Invoke();
                 }
+                
                 return result;
             });
 
 
-            anonimDelegate.Invoke(listDelegate);
+            int FinalResult=anonimDelegate.Invoke(listDelegate);
 
             Console.WriteLine("Hello");
+            Console.WriteLine("FinalResult is:{0}", FinalResult);
+            Console.ReadKey();
+        }
+
+        static class workWithDelegate
+        {
+            static int MainDelegateMethod()
+            {
+                int result = 0;
+                Random random = new Random();
+                result = result + random.Next(0, 100);
+                return result;
+            }
+
+            public static List<MainDelegate> Fill(int count)
+            {
+                List<MainDelegate> list = new List<MainDelegate>();
+                MainDelegate m1 = new MainDelegate(MainDelegateMethod);
+                for (int i = 0; i < count; i++)
+                {
+                    list.Add(m1);
+                }
+                return list;
+            }
+
         }
     }
 }
