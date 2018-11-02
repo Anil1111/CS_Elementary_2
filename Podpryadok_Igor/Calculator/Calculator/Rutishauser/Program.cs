@@ -13,6 +13,7 @@ namespace Rutishauser
                 Console.Write("Введите выражение: ");
                 Console.WriteLine(Calculate.Calculated(Console.ReadLine()));
                 Console.ReadLine();
+
         }
     }
 }
