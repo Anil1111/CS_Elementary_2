@@ -1,0 +1,5 @@
+Из сборки для экономии загрузки убраны библиотеки:
+iTextSharp.5.5.13
+SharpZipLib.1.0.0
+MySql.Data.8.0.13
+Google.Protobuf.3.5.1
