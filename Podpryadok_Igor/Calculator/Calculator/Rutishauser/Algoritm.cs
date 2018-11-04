@@ -137,6 +137,7 @@ namespace Rutishauser
 
         private static bool IsNumber(dynamic c)
         {
+            double d = 4.2d;
             if ("(".IndexOf(c) != -1 || double.TryParse(c, out double a))
             {
                 return true;

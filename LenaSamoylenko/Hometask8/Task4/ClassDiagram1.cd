@@ -3,7 +3,7 @@
   <Class Name="Task4.ConnectingDB">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAIAAAAIAABAAAAAAAAAAAAQAABAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAEAIAABAAEAAAAAAAgAAAIAAgAAAAA=</HashCode>
       <FileName>ConnectingDB.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -15,9 +15,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Task4.UsingDB">
-    <Position X="4.5" Y="2.5" Width="1.5" />
+    <Position X="5.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>UsingDB.cs</FileName>
     </TypeIdentifier>
   </Class>

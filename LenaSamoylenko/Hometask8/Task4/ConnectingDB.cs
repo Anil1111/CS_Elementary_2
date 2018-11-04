@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,32 +8,42 @@ namespace Task4
 {
     class ConnectingDB
     {
-        static ConnectingDB uniqueInstance;
-        private bool succesConnection;
+        
+        private MySqlConnection connection;
 
-        public bool SuccesConnection { get; private set; }
+        private string server = "localhost";
+        private string database = "world";
+        private string username = "root";
+        private string password = "ghjuhfvvbcn1809";
 
 
-        public ConnectingDB() { }
+        public MySqlConnection Connection => connection;
 
 
-        public static ConnectingDB Instance()
+        public ConnectingDB()
         {
-            if (uniqueInstance == null)
-            { uniqueInstance = new ConnectingDB(); }
-            return uniqueInstance;
+            ConnectingDBOperation(server, database, username, password);
         }
 
-        public void ConnectingDBOperation()
+
+     
+
+        private void ConnectingDBOperation(string server, string database, string username, string password)
         {
-            //описать процесс самого соединения
-            try { }
-            catch { }
+            try
+            {
+                string connectionDB = String.Format($"server={server}; database={database}; username={username}; password={password}");
+                connection = new MySqlConnection(connectionDB);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void RepeadConnection()
         {
-            ConnectingDBOperation();
+            ConnectingDBOperation(server, database, username, password);
         }
     }
 }
