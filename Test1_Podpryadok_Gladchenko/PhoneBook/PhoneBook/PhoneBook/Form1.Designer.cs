@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ShowBox = new System.Windows.Forms.TextBox();
             this.btn_add = new System.Windows.Forms.Button();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.phoneBox = new System.Windows.Forms.TextBox();
@@ -37,19 +36,10 @@
             this.btn_save = new System.Windows.Forms.Button();
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.btn_search = new System.Windows.Forms.Button();
-            this.btn_update = new System.Windows.Forms.Button();
+            this.btn_delate = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ShowBox
-            // 
-            this.ShowBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowBox.Location = new System.Drawing.Point(13, 13);
-            this.ShowBox.Multiline = true;
-            this.ShowBox.Name = "ShowBox";
-            this.ShowBox.Size = new System.Drawing.Size(444, 341);
-            this.ShowBox.TabIndex = 0;
             // 
             // btn_add
             // 
@@ -127,7 +117,7 @@
             // 
             this.btn_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_search.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            this.btn_search.Location = new System.Drawing.Point(463, 147);
+            this.btn_search.Location = new System.Drawing.Point(463, 202);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(250, 23);
             this.btn_search.TabIndex = 8;
@@ -135,23 +125,34 @@
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
-            // btn_update
+            // btn_delate
             // 
-            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_update.Enabled = false;
-            this.btn_update.Location = new System.Drawing.Point(551, 14);
-            this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(81, 23);
-            this.btn_update.TabIndex = 9;
-            this.btn_update.Text = "Update";
-            this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_delate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_delate.Enabled = false;
+            this.btn_delate.Location = new System.Drawing.Point(551, 14);
+            this.btn_delate.Name = "btn_delate";
+            this.btn_delate.Size = new System.Drawing.Size(81, 23);
+            this.btn_delate.TabIndex = 9;
+            this.btn_delate.Text = "Delate";
+            this.btn_delate.UseVisualStyleBackColor = true;
+            this.btn_delate.Click += new System.EventHandler(this.btn_delate_Click);
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(445, 337);
+            this.dataGridView.TabIndex = 10;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 361);
-            this.Controls.Add(this.btn_update);
+            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.btn_delate);
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.btn_save);
@@ -160,17 +161,15 @@
             this.Controls.Add(this.phoneBox);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.btn_add);
-            this.Controls.Add(this.ShowBox);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox ShowBox;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.TextBox phoneBox;
@@ -179,7 +178,8 @@
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Button btn_search;
-        private System.Windows.Forms.Button btn_update;
+        private System.Windows.Forms.Button btn_delate;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
 
