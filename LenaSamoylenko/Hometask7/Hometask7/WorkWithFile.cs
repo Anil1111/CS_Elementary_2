@@ -23,7 +23,7 @@ namespace Hometask7
             Console.WriteLine("Put full file name");
             //fullName = Console.ReadLine();
 
-            fullName = "C:\\Users\\Admin\\Documents\\Test\\1.doc";
+            fullName = "C:\\Users\\Admin\\Documents\\Test\\1.txt";
             string fileFormat = fullName.Split('.').Last();
             int fileFormatInDictionary = ((allFormats.Where(f => f.Value == fileFormat)).Select(f => f.Key)).First();
             
