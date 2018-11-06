@@ -10,6 +10,12 @@ namespace Contacts
 {
     public class WorkWithMySql : WorkWithData
     {
+        public WorkWithMySql(string connStr)
+             : base(connStr)
+        {
+
+        }
+
         public override void CreateRecord(FieldTable tableField)
         {
             #region Добавление новой записи
@@ -64,6 +70,73 @@ namespace Contacts
             #endregion
         }
 
+        public override List<FieldTable> SearchRecord(string searchStr)
+        {
+            #region По входной строке ищу нужный контакты
+            string sql_str = string.Empty;
+            List<FieldTable> fieldTables = new List<FieldTable>();
+
+            //if (!string.IsNullOrEmpty(searchStr))
+            //{
+                sql_str = @"select 
+		                        distinct 
+				                        id_fio,
+				                        surname,
+                                        name,
+                                        middle_name,
+                                        birthday,
+                                        comments
+                        from contact_fio as a
+                        left join contact_list as b
+                        on(id_fio=b.fio_id)
+                        where 
+		                        (
+			                        lower(surname) like '%" + searchStr.ToLower() + "%' or " +
+                        @"           lower(name) like '%" + searchStr.ToLower() + "%' or " +
+                        @"           lower(middle_name) like '%" + searchStr.ToLower() + "%' or " +
+                        @"           birthday like '%" + searchStr.ToLower() + "%' or " +
+                        @"           lower(comments) like '%" + searchStr.ToLower() + "%' or " +
+                        @"           lower(value_) like '%" + searchStr.ToLower() + "%'" +
+                        @"         )";
+            //}
+
+            MySqlDataAdapter dataAdapter;
+
+            try
+            {
+                string connectionString = ConnStr; /*String.Format($"datasource ={datasource};port={port};username={username};password={password};");*/
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    dataAdapter = new MySqlDataAdapter(sql_str, connection);
+                    connection.Open();
+                    using (MySqlDataReader myReader = dataAdapter.SelectCommand.ExecuteReader())
+                    {
+                        while (myReader.Read())
+                        {
+                            fieldTables.Add(new FieldTable
+                            {
+                                fio_id = Convert.ToInt16(myReader["id_fio"]),
+                                name = myReader["name"].ToString(),
+                                surname = myReader["surname"].ToString(),
+                                middle_name = myReader["middle_name"].ToString(),
+                                birthday = myReader["birthday"].ToString(),
+                                comments = myReader["comments"].ToString()
+                            });
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string mess = ex.Message;
+            }
+
+            return fieldTables;
+            #endregion
+        }
+
         public override List<FieldTable> SelectRecord(FieldTable tableField, string getViewTable)
         {
             #region Вывожу результирующую таблицы
@@ -88,7 +161,7 @@ namespace Contacts
 
             try
             {
-                string connectionString = String.Format($"datasource ={datasource};port={port};username={username};password={password};");
+                string connectionString = ConnStr; /*String.Format($"datasource ={datasource};port={port};username={username};password={password};");*/
 
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
@@ -181,7 +254,7 @@ namespace Contacts
 
             try
             {
-                string connectionString = String.Format($"datasource ={datasource};port={port};username={username};password={password};");
+                string connectionString = ConnStr; /*String.Format($"datasource ={datasource};port={port};username={username};password={password};");*/
 
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {

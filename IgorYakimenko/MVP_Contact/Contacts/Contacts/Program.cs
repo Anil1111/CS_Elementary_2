@@ -12,11 +12,8 @@ namespace Contacts
     {
         static void Main(string[] args)
         {
-            WorkWithData workWithData = new WorkWithMySql();
-            workWithData.datasource = "localhost";
-            workWithData.port = "3306";
-            workWithData.username = "root";
-            workWithData.password = "123456";
+            
+            WorkWithData workWithData = new WorkWithMySql($"datasource=localhost;database=contacts_book;port=3306;username=root;password=123456;");
 
             /************************************CreateRecord**************************************************/
             ////добавление в таблицу контактов Нового человека 
@@ -105,6 +102,21 @@ namespace Contacts
             //    string name_ = element.value_;
             //}
 
+
+            /************************************SearchRecord**************************************************/
+            ////По входной строке ищу нужный контакты
+            //List<FieldTable> fieldTable = new List<FieldTable>();
+
+            //fieldTable = workWithData.SearchRecord("Сантехник");
+
+            //foreach (var element in fieldTable)
+            //{
+            //    int id_fio_ = element.fio_id;
+            //    string surname_ = element.surname;
+            //    string middle_name = element.middle_name;
+            //    string birthday = element.birthday;
+            //    string comments = element.comments;
+            //}
 
         }
     }
