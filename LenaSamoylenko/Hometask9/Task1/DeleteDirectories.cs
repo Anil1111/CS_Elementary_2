@@ -14,6 +14,7 @@ namespace Hometask_9
         static DeleteDirectories()
         {
             workWithDirectories = new WorkWithDirectories();
+            directory = new DirectoryInfo(workWithDirectories.FullName);
         }
 
         private static void DeleteFolder()
@@ -28,16 +29,13 @@ namespace Hometask_9
 
         public static void DeleteAllFolders()
         {
-            //int count = directory.GetDirectories().Length;
+            
             foreach (var f in directory.GetDirectories())
             {
                 DeleteFolder(f.ToString());
             }
 
-            //for (int i = 0; i <= count; i++)
-            //{
-
-            //}
+           
         }
     }
 }

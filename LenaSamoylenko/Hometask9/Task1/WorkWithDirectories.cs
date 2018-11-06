@@ -10,9 +10,16 @@ namespace Hometask_9
         private string fullName;
         public string FullName => fullName;
 
+        private DirectoryInfo directory;
+        public DirectoryInfo Directory => directory;
+
+
         public WorkWithDirectories()
         {
-            fullName = Directory.GetDirectoryRoot(Environment.CurrentDirectory);
+            //для работы на диске С
+            //fullName = Directory.GetDirectoryRoot(Environment.CurrentDirectory);
+            fullName = Environment.CurrentDirectory;
+            directory = new DirectoryInfo(FullName);
         }
     }
 }
