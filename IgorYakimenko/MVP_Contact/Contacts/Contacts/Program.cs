@@ -105,6 +105,9 @@ namespace Contacts
 
             /************************************SearchRecord**************************************************/
             ////По входной строке ищу нужный контакты
+            ///
+            DataTable dt = new DataTable();
+            dt = workWithData.SearchRecord("Сантехник");
             //List<FieldTable> fieldTable = new List<FieldTable>();
 
             //fieldTable = workWithData.SearchRecord("Сантехник");

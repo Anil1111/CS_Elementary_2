@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.IO;
 
 namespace Contacts
 {
@@ -70,11 +71,12 @@ namespace Contacts
             #endregion
         }
 
-        public override List<FieldTable> SearchRecord(string searchStr)
+        public override /*List<FieldTable>*/ DataTable SearchRecord(string searchStr)
         {
             #region По входной строке ищу нужный контакты
             string sql_str = string.Empty;
-            List<FieldTable> fieldTables = new List<FieldTable>();
+            // List<FieldTable> fieldTables = new List<FieldTable>();
+            DataTable dt = new DataTable();
             
            /* if (!string.IsNullOrEmpty(searchStr))
             {*/
@@ -110,38 +112,45 @@ namespace Contacts
                 {
                     dataAdapter = new MySqlDataAdapter(sql_str, connection);
                     connection.Open();
-                    using (MySqlDataReader myReader = dataAdapter.SelectCommand.ExecuteReader())
-                    {
-                        while (myReader.Read())
-                        {
-                            fieldTables.Add(new FieldTable
-                            {
-                                fio_id = Convert.ToInt16(myReader["id_fio"]),
-                                name = myReader["name"].ToString(),
-                                surname = myReader["surname"].ToString(),
-                                middle_name = myReader["middle_name"].ToString(),
-                                birthday = myReader["birthday"].ToString(),
-                                comments = myReader["comments"].ToString()
-                            });
-                        }
-                    }
+                    dataAdapter.Fill(dt);
+                    //using (MySqlDataReader myReader = dataAdapter.SelectCommand.ExecuteReader())
+                    //{
+
+
+                    //    while (myReader.Read())
+                    //    {
+                    //        fieldTables.Add(new FieldTable
+                    //        {
+                    //            fio_id = Convert.ToInt16(myReader["id_fio"]),
+                    //            name = myReader["name"].ToString(),
+                    //            surname = myReader["surname"].ToString(),
+                    //            middle_name = myReader["middle_name"].ToString(),
+                    //            birthday = myReader["birthday"].ToString(),
+                    //            comments = myReader["comments"].ToString()
+                    //        });
+
+
+                    //    }
+                    //}
 
                 }
             }
             catch (Exception ex)
             {
-                string mess = ex.Message;
+                CreateStringErr(ex.Message);
             }
 
-            return fieldTables;
+            //return fieldTables;
+            return dt;
             #endregion
         }
 
-        public override List<FieldTable> SelectRecord(FieldTable tableField, string getViewTable)
+        public override /*List<FieldTable>*/ DataTable SelectRecord(FieldTable tableField, string getViewTable)
         {
             #region Вывожу результирующую таблицы
             string sql_str = string.Empty;
-            List<FieldTable> fieldTables = new List<FieldTable>();
+            //List<FieldTable> fieldTables = new List<FieldTable>();
+            DataTable dt = new DataTable();
             switch(getViewTable)
             {
                 case "Type": sql_str = "select * from contacts_book.contact_type order by idcontact_type";
@@ -166,52 +175,53 @@ namespace Contacts
                 {
                     dataAdapter = new MySqlDataAdapter(sql_str, connection);
                     connection.Open();
-                    using (MySqlDataReader myReader = dataAdapter.SelectCommand.ExecuteReader())
-                    {
-                        while (myReader.Read())
-                        {
-                            switch (getViewTable)
-                            {
-                                case "Type":
-                                    fieldTables.Add(new FieldTable
-                                    {
-                                        idcontact_type = Convert.ToInt16(myReader["idcontact_type"]),
-                                        contact_definition = myReader["contact_definition"].ToString()
-                                    });
-                                    break;
+                    dataAdapter.Fill(dt);
+                    //using (MySqlDataReader myReader = dataAdapter.SelectCommand.ExecuteReader())
+                    //{
+                    //    while (myReader.Read())
+                    //    {
+                    //        switch (getViewTable)
+                    //        {
+                    //            case "Type":
+                    //                fieldTables.Add(new FieldTable
+                    //                {
+                    //                    idcontact_type = Convert.ToInt16(myReader["idcontact_type"]),
+                    //                    contact_definition = myReader["contact_definition"].ToString()
+                    //                });
+                    //                break;
 
-                                case "Fio":
-                                    fieldTables.Add(new FieldTable
-                                    {
-                                        fio_id = Convert.ToInt16(myReader["id_fio"]),
-                                        name = myReader["name"].ToString(),
-                                        surname = myReader["surname"].ToString(),
-                                        middle_name = myReader["middle_name"].ToString(),
-                                        comments = myReader["comments"].ToString()
-                                    });
-                                    break;
+                    //            case "Fio":
+                    //                fieldTables.Add(new FieldTable
+                    //                {
+                    //                    fio_id = Convert.ToInt16(myReader["id_fio"]),
+                    //                    name = myReader["name"].ToString(),
+                    //                    surname = myReader["surname"].ToString(),
+                    //                    middle_name = myReader["middle_name"].ToString(),
+                    //                    comments = myReader["comments"].ToString()
+                    //                });
+                    //                break;
 
-                                case "List":
-                                    fieldTables.Add(new FieldTable
-                                    {
-                                        id_list = Convert.ToInt16(myReader["id_list"]),
-                                        fio_id = Convert.ToInt16(myReader["fio_id"]),
-                                        type_id = Convert.ToInt16(myReader["type_id"]),
-                                        value_ = myReader["value_"].ToString()
-                                    });
-                                    break;
-                            }
-                        }
-                    }
-                    
+                    //            case "List":
+                    //                fieldTables.Add(new FieldTable
+                    //                {
+                    //                    id_list = Convert.ToInt16(myReader["id_list"]),
+                    //                    fio_id = Convert.ToInt16(myReader["fio_id"]),
+                    //                    type_id = Convert.ToInt16(myReader["type_id"]),
+                    //                    value_ = myReader["value_"].ToString()
+                    //                });
+                    //                break;
+                    //        }
+                    //    }
+                    //}                    
                 }
             }
             catch (Exception ex)
             {
-                string mess = ex.Message;
+                CreateStringErr(ex.Message);
             }
 
-            return fieldTables;
+            //return fieldTables;
+            return dt;
             #endregion
         }
 
@@ -264,11 +274,44 @@ namespace Contacts
             }
             catch (Exception ex)
             {
-                string mess = ex.Message;
+                CreateStringErr(ex.Message);
             }
 
             #endregion
         }
-        
+
+
+        private static void LogFile(string logMessage, TextWriter w)
+        {
+            w.Write("\r\nLog Entry : ");
+            w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+                DateTime.Now.ToLongDateString());
+            w.WriteLine("  :");
+            w.WriteLine("  :{0}", logMessage);
+            w.WriteLine("-------------------------------");
+        }
+
+        private static void CreateStringErr(string error)
+        {
+            string dirLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            if (!System.IO.File.Exists(dirLocation + "\\logFile.txt"))
+            {
+                System.IO.File.Create(dirLocation + "\\logFile.txt");
+                using (StreamWriter w = File.AppendText(dirLocation + "\\logFile.txt"))
+                {
+                    LogFile(error, w);
+                }
+            }
+            else
+            {
+                using (StreamWriter w = File.AppendText(dirLocation + "\\logFile.txt"))
+                {
+
+                    LogFile(error, w);
+                }
+            }
+        }
+
     }
 }
