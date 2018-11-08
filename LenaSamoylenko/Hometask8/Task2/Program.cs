@@ -6,7 +6,11 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("This is task 2");
+            LoadBook loadBook = new LoadBook();
+            FindAndReplaceManager.FindNext(loadBook);
+            Console.ReadKey();
+
         }
     }
 }
