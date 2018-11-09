@@ -9,7 +9,7 @@ namespace MVC
 {
     public class WorkWithDB
     {
-        List<Abonent> abonents = new List<Abonent>();
+        List<Abonent> abonentsDB = new List<Abonent>();
         public bool ConnectionToDB(string server, string host, string user, string password)
         {
             //Вызываем метод модели для подключения к бд и передаем ему в аргументы server,host,user,password
@@ -27,21 +27,29 @@ namespace MVC
             person1.Skype = "IvIvanov";
             person1.Telegram = "lessons.com";
             person1.EMail = "ivIv@i.ua";
+            abonentsDB.Add(person1);
 
 
-
-           //Abonent person2 = new Abonent("Petrov", "Petr", "+30673231245", "PetrPet", "webdesign.com", "petrPet@i.ua");
-           //Abonent person3 = new Abonent("Rudakova", "Anna", "+30664567820", "RudAnn", "englishclub.com", "RudAnn@i.ua");
+            //Abonent person2 = new Abonent("Petrov", "Petr", "+30673231245", "PetrPet", "webdesign.com", "petrPet@i.ua");
+            //Abonent person3 = new Abonent("Rudakova", "Anna", "+30664567820", "RudAnn", "englishclub.com", "RudAnn@i.ua");
 
 
 
 
             // массив для сериализации
-            List<Abonent> people = new List<Abonent>();
-            people.Add(person1);
+            //List<Abonent> people = new List<Abonent>();
+
+
             //people.Add(person2);
             //people.Add(person3);        
-            return people;//Вернём список из БД
+            return abonentsDB;//Вернём список из БД
         }
+
+        public void WriteInDB(List<Abonent> abonentsDB)
+        {
+            this.abonentsDB = abonentsDB;
+        }
+
+
     }
 }

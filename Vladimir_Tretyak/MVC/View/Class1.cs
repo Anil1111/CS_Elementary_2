@@ -144,6 +144,7 @@ namespace MVC
             Console.ReadLine();
         }
         #endregion
+        #region Диалоги записи нового абонента
         public Abonent newAbonent()
         {       
             Abonent abonent=new Abonent();    
@@ -159,9 +160,9 @@ namespace MVC
             abonent.Telegram = Console.ReadLine();
             Console.WriteLine("Введите электронную почту нового абонента");
             abonent.EMail = Console.ReadLine();
-            //Abonent abonent = new Abonent();
             return abonent;
         }
+        #endregion
         #region Команда для выполнения операции
         public int getCommand(int commandOfoperation)
         {
