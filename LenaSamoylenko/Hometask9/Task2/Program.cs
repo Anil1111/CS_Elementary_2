@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Task2
 {
@@ -10,11 +11,9 @@ namespace Task2
         {
             Console.WriteLine("Task2");
 
-            AddData add = new AddData();
-            add.AddDataToFile();
+            AddData add = new AddData(FileMode.OpenOrCreate);
+            ReadData read = new ReadData(FileMode.Open);
 
-            ReadData read = new ReadData();
-            read.PrintConsole();
             Console.ReadKey();
         }
     }
