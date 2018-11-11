@@ -9,8 +9,9 @@ namespace MVC
 {
     interface IView
     {
-        void printMessage(List<Abonent> ab);     
-        int getCommand(int commandOfoperation);
+        void printMessage(List<Abonent> ab);
+        void printMessage<T>(T text);
+        int getCommand();
     }
     public class View:IView
     {
@@ -121,19 +122,18 @@ namespace MVC
             Password = Console.ReadLine();
         }
        
-        public void Connection(bool connection)
+        public int Connection(bool connection)
         {
             if (connection == true)
             {
                 Console.WriteLine("Соединение с БД установлено");
-                Console.WriteLine("Выберите что вы хотите сделать:");
-                Console.WriteLine("Нажмите:\n 1-для просмотра всех контактов\n 2-для ввода нового\n 3-для редактирования\n 4-для удаления");
-              
+                return getCommand(); 
             }
             else
             {
                 Console.WriteLine("Соединение с БД не установлено, повторите ввод:");
                 Authorization();
+                return 0;
             }
         }
         #endregion
@@ -142,6 +142,11 @@ namespace MVC
         {
             ConsoleTable.From(abonenet).Write();
             Console.ReadLine();
+        }
+
+        public void printMessage<T>(T text)
+        {
+            Console.WriteLine(text);
         }
         #endregion
         #region Диалоги записи нового абонента
@@ -163,10 +168,22 @@ namespace MVC
             return abonent;
         }
         #endregion
-        #region Команда для выполнения операции
-        public int getCommand(int commandOfoperation)
+        #region Диалог редактирования абонента
+        public string Change()
         {
-            return commandOfoperation;
+            Console.WriteLine("Для поиска и коррекции данных введите  фамилию и имя абонента ");
+            string lastNameAndFirstName=Console.ReadLine();
+            return lastNameAndFirstName;
+        }
+
+        #endregion
+        #region Команда для выполнения операции
+        public int getCommand()
+        {          
+            Console.WriteLine("Выберите что вы хотите сделать:");
+            Console.WriteLine("Нажмите:\n 1-для просмотра всех контактов\n 2-для ввода нового\n 3-для редактирования\n 4-для удаления");
+            int commandOfoperation = Convert.ToInt32(Console.ReadLine());
+            return commandOfoperation ;
         }
         #endregion
     }

@@ -16,9 +16,8 @@ namespace MVC
         WorkWithDB workWithDB = new WorkWithDB();
         List<Abonent> abonentsController = new List<Abonent>();
         public Controller()
-        {
-            view.Connection(workWithDB.ConnectionToDB(view.Server, view.Host, view.UserName, view.Password));
-            workWithCommand(view.getCommand(Convert.ToInt32(Console.ReadLine())));
+        {          
+            workWithCommand(view.Connection(workWithDB.ConnectionToDB(view.Server, view.Host, view.UserName, view.Password)));
         }
         public void workWithCommand(int command)
         {         
@@ -27,18 +26,33 @@ namespace MVC
                 case 1:
                     abonentsController = workWithDB.ReadAll();//Выводим из БД данные
                     view.printMessage(abonentsController);//Вывод таблици абонентов в консоль
+                    workWithCommand(view.getCommand());
                     break;
                 case 2:
                     abonentsController = workWithDB.ReadAll();//Читаем базу в список
                     abonentsController.Add(view.newAbonent());//Добавляем нового абонента
                     workWithDB.WriteInDB(abonentsController);//Вызываем метод записи в базу      
-                 
+                    abonentsController = workWithDB.ReadAll();//Тестово читаем БД
                     view.printMessage(abonentsController);
-
+                    workWithCommand(view.getCommand());
                     break;
                 case 3:
-
-
+                    abonentsController = workWithDB.ReadAll();
+                    String[] words = view.Change().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    string lastName = words[0];
+                    string firstName = words[1];
+                    List<Abonent> changeAbonentsController=new List<Abonent>();
+                    foreach (Abonent ab in abonentsController)
+                    {
+                        if (ab.LastName == lastName || ab.FirstName == firstName)
+                        {
+                            changeAbonentsController.Add(ab);
+                        }
+                    }
+                    if (changeAbonentsController.Count > 0)
+                        view.printMessage(changeAbonentsController);
+                    else
+                        view.printMessage("Абонент не найден");
                     break;
                 case 4:
 

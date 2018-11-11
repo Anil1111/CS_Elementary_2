@@ -8,12 +8,26 @@ namespace MVC
 {
     public class Abonent
     {
+        private int id;
         private string lastName;
         private string firstName;
         private string phoneNumber;
         private string skype;
         private string telegram;
         private string eMail;
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
 
         public string LastName
         {
@@ -92,9 +106,15 @@ namespace MVC
                 eMail = value;
             }
         }
-       // public Abonent(string lastName, string firstName, string phoneNumber, string skype, string telegram, string eMail)
-       public Abonent()          
+
+      
+
+
+
+        // public Abonent(string lastName, string firstName, string phoneNumber, string skype, string telegram, string eMail)
+        public Abonent()          
         {
+            Id = id;
             LastName = lastName;
             FirstName = firstName;
             PhoneNumber = phoneNumber;
