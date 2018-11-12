@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using PhoneBookDatabase;
 using MySql.Data.MySqlClient;
+using System.Data;
+
 
 namespace PhoneBookDatabase
 {
@@ -13,15 +15,21 @@ namespace PhoneBookDatabase
 
     public class Wrapper
     {
-        internal UsingDB usingDB;
-        public Wrapper()
+        private UsingDB usingDB;
+
+        internal UsingDB UsingDB  => usingDB;
+
+        //private ConnectDB connectDB;
+
+        public Wrapper(string username, string password)
         {
-            usingDB = new UsingDB("root", "ghjuhfvvbcn1809");
+            usingDB = new UsingDB(username, password);
+   
         }
+
 
         public void SelectAll()
         {
-            usingDB.Connection.Open();
             MySqlCommand command = new MySqlCommand("selectdata", usingDB.Connection);
             command.CommandText = "selectdata";
             command.Connection = usingDB.Connection;
@@ -31,7 +39,31 @@ namespace PhoneBookDatabase
 
         }
 
+        public DataSet SelectAll1()
+        {
+            DataSet dataSet = new DataSet();
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("select * from `phonebook`.`name`", usingDB.Connection);
+            dataAdapter.Fill(dataSet, "allData");
+            return dataSet;
+        }
 
+        public string buttonPushForConnection()
+        {
+
+            var c = usingDB.Connection.State;
+            string textconnection;
+
+            try
+            {
+                usingDB.Connection.Open();
+                textconnection = "Connecting";
+            }
+            catch { textconnection = "No connecting"; }
+            return textconnection;
+        }
+
+
+        
 
         //DBDelegate bDelegate=new DBDelegate(UsingDB.)
 

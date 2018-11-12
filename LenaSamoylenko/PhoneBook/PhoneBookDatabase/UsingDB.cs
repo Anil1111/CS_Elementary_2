@@ -21,9 +21,5 @@ namespace PhoneBookDatabase
             usingDataBases = new UsingDB(username, password);
         }
 
-        internal void SelectAll()
-        {
-
-        }
     }
 }
