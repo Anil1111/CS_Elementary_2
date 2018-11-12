@@ -6,21 +6,28 @@ using System.IO;
 
 namespace Task2
 {
-    static class Helper
+    public abstract class Helper
     {
-        private static FileStream fileStream;
-        public static FileStream _FileStream => fileStream;
+        private FileStream fileStream;
+        public FileStream _FileStream => fileStream;
+        private string fullFileName;
+        public string FullFileName => fullFileName;
 
-        static Helper()
+        private Helper()
         {
-            fileStream = new FileStream(PutName(),FileMode.OpenOrCreate);
+            fullFileName = PutName();
         }
 
-        private static string PutName()
+        public Helper(FileMode mode) : this()
+        {
+            fileStream = new FileStream(FullFileName, mode);
+        }
+
+        private string PutName()
         {
             Console.WriteLine("Put full file name");
-            //string fullName = Console.ReadLine();
-            string fullName = "C:\\Users\\Public\\Documents\\txt2.txt";
+            string fullName = Console.ReadLine();
+            //string fullName = "C:\\Users\\Public\\Documents\\txt2.txt";
             return fullName;
         }
     }

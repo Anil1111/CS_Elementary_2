@@ -5,11 +5,16 @@ using System.IO;
 
 namespace Task2
 {
-    class ReadData
+    public class ReadData : Helper
     {
+        public ReadData(FileMode mode) : base(mode)
+        {
+            PrintConsole();
+        }
+
         public void PrintConsole()
         {
-            StreamReader reader = new StreamReader(Helper._FileStream, Encoding.Default);
+            StreamReader reader = new StreamReader(_FileStream, Encoding.Default);
             if (!reader.EndOfStream)
             {
                 var lines = reader.ReadToEnd();

@@ -8,15 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MVP;
+using MySql.Data.MySqlClient;
 
 namespace PhoneBook
-{
+{    
     public partial class Form1 : Form
     {
         MVP.Crud crud = new Crud();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                MVP.Connect connect = new Connect();
+                dataGridView.DataSource = connect.Connecting();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -28,6 +42,8 @@ namespace PhoneBook
             emailBox.Enabled = true;
             skypeBox.Enabled = true;
             btn_delate.Enabled = false;
+            btn_search.Enabled = false;
+            SearchBox.Enabled = false;
             
             crud.Add();
         }
@@ -41,8 +57,12 @@ namespace PhoneBook
             emailBox.Enabled = false;
             skypeBox.Enabled = false;
             btn_delate.Enabled = false;
+            btn_search.Enabled = true;
+            SearchBox.Enabled = true;
 
             crud.Save();
+
+            CleanForm();
         }
 
         private void btn_search_Click(object sender, EventArgs e)
@@ -54,8 +74,12 @@ namespace PhoneBook
             emailBox.Enabled = true;
             skypeBox.Enabled = true;
             btn_save.Enabled = true;
+            btn_search.Enabled = false;
+            SearchBox.Enabled = false;
 
             crud.Search();
+
+            SearchBox.Text = "";
         }
 
         private void btn_delate_Click(object sender, EventArgs e)
@@ -67,13 +91,26 @@ namespace PhoneBook
             emailBox.Enabled = false;
             skypeBox.Enabled = false;
             btn_delate.Enabled = false;
+            btn_search.Enabled = true;
+            SearchBox.Enabled = true;
 
             crud.Delate();
+
+            CleanForm();
         }
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        public void CleanForm()
+        {
+            nameBox.Text = "";
+            phoneBox.Text = "";
+            emailBox.Text = "";
+            skypeBox.Text = "";
+            SearchBox.Text = "";
         }
     }
 }

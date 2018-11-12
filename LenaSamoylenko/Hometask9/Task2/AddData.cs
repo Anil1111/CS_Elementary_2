@@ -5,14 +5,19 @@ using System.IO;
 
 namespace Task2
 {
-    class AddData
+    public class AddData : Helper
     {
-        public void AddDataToFile()
+        public AddData(FileMode mode) : base(mode)
         {
-            StreamWriter writer = new StreamWriter(Helper._FileStream);
+            AddDataToFile();
+
+        }
+
+        private void AddDataToFile()
+        {
+            StreamWriter writer = new StreamWriter(_FileStream);
             Console.WriteLine("Put your text");
-            writer.WriteLine("gfgf");
-            //writer.NewLine = Console.ReadLine();
+            writer.Write(Console.ReadLine());
             writer.Close();
         }
     }
