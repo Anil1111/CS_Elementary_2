@@ -35,16 +35,21 @@ namespace PhoneBookPresenter
             return result;
         }
 
-        public object SelectAll()
+        public DataTable SelectAll()
         {
+
             var ds = wrapper.SelectAll1();
-            return ds.Tables["name"];
+            return ds;
         }
 
         public string ReturnUserName()
         {
-            return wrapper.
+            return wrapper.ReturnUserName();
         }
 
+        public string ReturnDatabases()
+        {
+            return wrapper.ReturnDBName();
+        }
     }
 }

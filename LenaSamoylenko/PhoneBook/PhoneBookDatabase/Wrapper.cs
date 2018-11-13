@@ -17,14 +17,14 @@ namespace PhoneBookDatabase
     {
         private UsingDB usingDB;
 
-        internal UsingDB UsingDB  => usingDB;
+        internal UsingDB UsingDB => usingDB;
 
         //private ConnectDB connectDB;
 
         public Wrapper(string username, string password)
         {
             usingDB = new UsingDB(username, password);
-   
+
         }
 
 
@@ -39,12 +39,16 @@ namespace PhoneBookDatabase
 
         }
 
-        public DataSet SelectAll1()
+        public DataTable SelectAll1()
         {
-            DataSet dataSet = new DataSet();
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("select * from `phonebook`.`name`", usingDB.Connection);
-            dataAdapter.Fill(dataSet, "allData");
-            return dataSet;
+            //DataSet dataSet = new DataSet();
+            //MySqlDataAdapter dataAdapter = new MySqlDataAdapter("select * from `phonebook`.`name`", usingDB.Connection);
+            //dataAdapter.Fill(dataSet, "view");
+
+            MySqlCommand mySqlCommand = new MySqlCommand("select * from `phonebook`.`name`", usingDB.Connection);
+            MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+            DataTable shemaTable = mySqlDataReader.GetSchemaTable();
+            return shemaTable;
         }
 
         public string buttonPushForConnection()
@@ -62,8 +66,16 @@ namespace PhoneBookDatabase
             return textconnection;
         }
 
+        public string ReturnUserName()
+        {
+            return UsingDB.Username;
+        }
 
-        
+        public string ReturnDBName()
+        {
+            return UsingDB.Database;
+        }
+
 
         //DBDelegate bDelegate=new DBDelegate(UsingDB.)
 
