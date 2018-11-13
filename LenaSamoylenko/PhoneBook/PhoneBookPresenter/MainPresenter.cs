@@ -38,7 +38,7 @@ namespace PhoneBookPresenter
         public DataTable SelectAll()
         {
 
-            var ds = wrapper.SelectAll1();
+            var ds = wrapper.SelectAll();
             return ds;
         }
 

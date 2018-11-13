@@ -10,7 +10,7 @@ using System.Data;
 
 namespace PhoneBookDatabase
 {
-    public delegate void DBDelegate();
+    public delegate DataTable DBDelegate();
 
 
     public class Wrapper
@@ -27,26 +27,21 @@ namespace PhoneBookDatabase
 
         }
 
+        //первый способ
+        //public DataTable SelectAll()
+        //{
+        //    DataTable dataTable = new DataTable();
+        //    MySqlDataAdapter adapter = new MySqlDataAdapter("select * from `phonebook`.`name`", usingDB.Connection);
+        //    adapter.Fill(dataTable);
+        //    return dataTable;
+        //}
 
-        public void SelectAll()
+        public DataTable SelectAll()
         {
-            MySqlCommand command = new MySqlCommand("selectdata", usingDB.Connection);
-            command.CommandText = "selectdata";
-            command.Connection = usingDB.Connection;
-
-            MySqlDataReader reader = command.ExecuteReader();
-            usingDB.Connection.Close();
-
-        }
-
-        public DataTable SelectAll1()
-        {
-            //DataSet dataSet = new DataSet();
-            //MySqlDataAdapter dataAdapter = new MySqlDataAdapter("select * from `phonebook`.`name`", usingDB.Connection);
-            //dataAdapter.Fill(dataSet, "view");
-
-            MySqlCommand mySqlCommand = new MySqlCommand("select * from `phonebook`.`name`", usingDB.Connection);
+            MySqlCommand mySqlCommand = new MySqlCommand("`selectData`", usingDB.Connection);
+            mySqlCommand.CommandType = CommandType.StoredProcedure;
             MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+
             DataTable shemaTable = mySqlDataReader.GetSchemaTable();
             return shemaTable;
         }

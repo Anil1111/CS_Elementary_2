@@ -28,15 +28,13 @@ namespace PhoneBookView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //UserConnecting userConnecting = new UserConnecting();
-            //userConnecting.Show();
-            //Добавить текст про сервер и бд
             presenter = new MainPresenter(textBox1.Text, textBox2.Text);
             label1.Text = presenter.ButtonConnection();
             label3.Text = presenter.ReturnDatabases();
             label3.Visible = true;
             label5.Text = presenter.ReturnUserName();
             label5.Visible = true;
+
             Refresh();
 
         }
@@ -47,10 +45,10 @@ namespace PhoneBookView
             dataGridView1.DataSource = presenter.SelectAll();
             //dataGridView1.DataSource = (new DataSet()).Tables["address"];
 
-           
+
             dataGridView1.Refresh();
         }
 
-      
+
     }
 }
