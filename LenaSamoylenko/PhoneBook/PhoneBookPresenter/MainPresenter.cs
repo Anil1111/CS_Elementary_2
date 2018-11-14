@@ -4,23 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhoneBookDatabase;
+using PhoneBookView;
+using System.Windows.Forms;
+using System.Data;
 
 namespace PhoneBookPresenter
 {
     public class MainPresenter
     {
+        private Wrapper wrapper;
+        private PhoneBookView.IUserDialog view;
 
 
-        public MainPresenter()
+        public MainPresenter(string username, string password)
         {
-
-
+            wrapper = new Wrapper(username, password);
+            
         }
+
+
         public void selectAll()
         {
-            DBDelegate del1 = new DBDelegate((new Wrapper()).SelectAll);
+            DBDelegate del1 = new DBDelegate(wrapper.SelectAll);
             del1.Invoke();
         }
 
+        public Tuple<string,bool,bool> ButtonConnection()
+        {
+            var result=wrapper.buttonPushForConnection();
+            return result;
+        }
+
+        public DataTable SelectAll()
+        {
+
+            var ds = wrapper.SelectAll();
+            return ds;
+        }
+
+        public string ReturnUserName()
+        {
+            return wrapper.ReturnUserName();
+        }
+
+        public string ReturnDatabases()
+        {
+            return wrapper.ReturnDBName();
+        }
+
+        public DataTable UpdateCell()
+        {
+            string cell = "fdsdf";
+            return wrapper.UpdateCellName(cell);
+            
+        }
     }
 }
