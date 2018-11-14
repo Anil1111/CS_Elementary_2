@@ -108,9 +108,6 @@ namespace MVC
         }
 
       
-
-
-
         // public Abonent(string lastName, string firstName, string phoneNumber, string skype, string telegram, string eMail)
         public Abonent()          
         {
