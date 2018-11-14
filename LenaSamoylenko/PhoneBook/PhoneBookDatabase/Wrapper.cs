@@ -16,7 +16,7 @@ namespace PhoneBookDatabase
     public class Wrapper
     {
         private UsingDB usingDB;
-
+        private MySqlCommand mySqlCommand;
         internal UsingDB UsingDB => usingDB;
 
         //private ConnectDB connectDB;
@@ -38,7 +38,25 @@ namespace PhoneBookDatabase
 
         public DataTable SelectAll()
         {
-            MySqlCommand mySqlCommand = new MySqlCommand("`selectData`", usingDB.Connection);
+            mySqlCommand = new MySqlCommand("`selectData`", usingDB.Connection);
+            mySqlCommand.CommandType = CommandType.StoredProcedure;
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(mySqlCommand);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        public DataTable UpdateCellName(string name)
+        {
+            mySqlCommand = new MySqlCommand("`updateData`", usingDB.Connection);
+            mySqlCommand.Parameters.Add(@"FirstName");
+            //mySqlCommand.Parameters.Add(@"SecondName");
+
+            mySqlCommand.Parameters[@"FirstName"].Value = name;
+            //mySqlCommand.Parameters.Add(@"SecondName");
+
             mySqlCommand.CommandType = CommandType.StoredProcedure;
             MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
 
@@ -46,19 +64,22 @@ namespace PhoneBookDatabase
             return shemaTable;
         }
 
-        public string buttonPushForConnection()
+        public Tuple<string, bool, bool> buttonPushForConnection()
         {
-
+            Tuple<string, bool, bool> tuple;
             var c = usingDB.Connection.State;
-            string textconnection;
 
             try
             {
                 usingDB.Connection.Open();
-                textconnection = "Connecting";
+                tuple = new Tuple<string, bool, bool>("Connecting", true, true);
+
             }
-            catch { textconnection = "No connecting"; }
-            return textconnection;
+            catch
+            {
+                tuple = new Tuple<string, bool, bool>("No connecting", false, false);
+            }
+            return tuple;
         }
 
         public string ReturnUserName()

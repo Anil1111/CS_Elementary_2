@@ -29,11 +29,12 @@ namespace PhoneBookView
         private void button1_Click(object sender, EventArgs e)
         {
             presenter = new MainPresenter(textBox1.Text, textBox2.Text);
-            label1.Text = presenter.ButtonConnection();
+            var con= presenter.ButtonConnection();
+            label1.Text = con.Item1;
             label3.Text = presenter.ReturnDatabases();
-            label3.Visible = true;
+            label3.Visible = con.Item2;
             label5.Text = presenter.ReturnUserName();
-            label5.Visible = true;
+            label5.Visible = con.Item3;
 
             Refresh();
 
@@ -48,6 +49,11 @@ namespace PhoneBookView
 
             dataGridView1.Refresh();
         }
+
+        //private void update(object sender, EventArgs e)
+        //{
+        //    presenter.UpdateCell();
+        //}
 
 
     }

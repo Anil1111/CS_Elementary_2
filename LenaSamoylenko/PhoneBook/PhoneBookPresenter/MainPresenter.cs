@@ -29,9 +29,9 @@ namespace PhoneBookPresenter
             del1.Invoke();
         }
 
-        public string ButtonConnection()
+        public Tuple<string,bool,bool> ButtonConnection()
         {
-            string result=wrapper.buttonPushForConnection();
+            var result=wrapper.buttonPushForConnection();
             return result;
         }
 
@@ -50,6 +50,13 @@ namespace PhoneBookPresenter
         public string ReturnDatabases()
         {
             return wrapper.ReturnDBName();
+        }
+
+        public DataTable UpdateCell()
+        {
+            string cell = "fdsdf";
+            return wrapper.UpdateCellName(cell);
+            
         }
     }
 }
