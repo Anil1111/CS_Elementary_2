@@ -38,7 +38,7 @@ namespace MVC
                     break;
                 case 3:
                     abonentsController = workWithDB.ReadAll();
-                    String[] words = view.Change().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    String[] words = view.searchForChange().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     string lastName = words[0];
                     string firstName = words[1];
                     List<Abonent> changeAbonentsController=new List<Abonent>();
@@ -50,7 +50,10 @@ namespace MVC
                         }
                     }
                     if (changeAbonentsController.Count > 0)
+                    {
                         view.printMessage(changeAbonentsController);
+                        view.ChangeAbonent();
+                    }
                     else
                         view.printMessage("Абонент не найден");
                     break;
@@ -59,8 +62,7 @@ namespace MVC
 
                     break;
                 default:
-                    Console.WriteLine("Неверный выбор");
-                    Console.ReadLine();
+                    view.printMessage("Неверный выбор");                                  
                     break;
 
             }

@@ -9,7 +9,7 @@ namespace MVC
 {
     interface IView
     {
-        void printMessage(List<Abonent> ab);
+        
         void printMessage<T>(T text);
         int getCommand();
     }
@@ -147,6 +147,7 @@ namespace MVC
         public void printMessage<T>(T text)
         {
             Console.WriteLine(text);
+            Console.ReadLine();
         }
         #endregion
         #region Диалоги записи нового абонента
@@ -169,11 +170,16 @@ namespace MVC
         }
         #endregion
         #region Диалог редактирования абонента
-        public string Change()
+        public string searchForChange()
         {
             Console.WriteLine("Для поиска и коррекции данных введите  фамилию и имя абонента ");
             string lastNameAndFirstName=Console.ReadLine();
             return lastNameAndFirstName;
+        }
+
+        public void ChangeAbonent()
+        {
+
         }
 
         #endregion

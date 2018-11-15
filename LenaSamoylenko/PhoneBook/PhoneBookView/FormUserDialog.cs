@@ -12,7 +12,7 @@ namespace PhoneBookView
 {
     public partial class UserConnecting : Form
     {
-        
+
         public UserConnecting()
         {
             InitializeComponent();
@@ -22,5 +22,7 @@ namespace PhoneBookView
         {
             Close();
         }
+
     }
+
 }

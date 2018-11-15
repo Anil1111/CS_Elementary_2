@@ -14,13 +14,11 @@ namespace PhoneBookDatabase
         private string database = "phonebook";
         private string userName = null;
         private string password = null;
-        private bool succesConnection = false;
-
-        internal string Username => userName;
+        
+        public string Username => userName;
+        public string Database => database;
         internal MySqlConnection Connection => connection;
-        internal bool SuccesConnection => succesConnection;
-
-
+       
         public ConnectDB(string _username, string _password)
         {
             userName = _username;
@@ -34,7 +32,6 @@ namespace PhoneBookDatabase
             {
                 string con = String.Format($"server={server}; database={database}; username={username}; password={password}");
                 connection = new MySqlConnection(con);
-                succesConnection = true;
             }
             catch (Exception e)
             {
