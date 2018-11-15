@@ -29,22 +29,34 @@ namespace PhoneBookPresenter
             del1.Invoke();
         }
 
-        public string ButtonConnection()
+        public Tuple<string,bool,bool> ButtonConnection()
         {
-            string result=wrapper.buttonPushForConnection();
+            var result=wrapper.buttonPushForConnection();
             return result;
         }
 
-        public object SelectAll()
+        public DataTable SelectAll()
         {
-            var ds = wrapper.SelectAll1();
-            return ds.Tables["name"];
+
+            var ds = wrapper.SelectAll();
+            return ds;
         }
 
         public string ReturnUserName()
         {
-            return wrapper.
+            return wrapper.ReturnUserName();
         }
 
+        public string ReturnDatabases()
+        {
+            return wrapper.ReturnDBName();
+        }
+
+        public DataTable UpdateCell()
+        {
+            string cell = "fdsdf";
+            return wrapper.UpdateCellName(cell);
+            
+        }
     }
 }

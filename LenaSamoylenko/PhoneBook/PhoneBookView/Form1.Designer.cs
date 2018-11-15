@@ -115,7 +115,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(459, 348);
             this.dataGridView1.TabIndex = 7;
-            // 
+            //this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.update);
+
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(16, 13);
