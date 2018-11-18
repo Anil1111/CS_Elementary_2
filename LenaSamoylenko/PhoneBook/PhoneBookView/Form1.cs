@@ -44,16 +44,19 @@ namespace PhoneBookView
         {
             //presenter.selectAll();
             dataGridView1.DataSource = presenter.SelectAll();
+            dataGridView1.AutoGenerateColumns = true;
             //dataGridView1.DataSource = (new DataSet()).Tables["address"];
 
 
             dataGridView1.Refresh();
         }
 
-        //private void update(object sender, EventArgs e)
-        //{
-        //    presenter.UpdateCell();
-        //}
+
+
+        private void UpdateData(object sender, EventArgs e)
+        {
+            presenter.UpdateCell(dataGridView1.CurrentCellAddress.Y,dataGridView1.CurrentRow);
+        }
 
 
     }
