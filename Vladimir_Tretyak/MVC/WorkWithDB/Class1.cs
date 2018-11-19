@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MySql.Data.MySqlClient;
 
 namespace MVC
 {
     public class WorkWithDB
     {
-       static List<Abonent> AbonentsDB = new List<Abonent>();
+        static List<Abonent> AbonentsDB = new List<Abonent>();
 
-        public bool ConnectionToDB(string server, string host, string user, string password)
+        public bool ConnectionToDB(string connectString)
         {
             Tests();
             //Вызываем метод модели для подключения к бд и передаем ему в аргументы server,host,user,password
             //метод модели должен вернуть нам bool;
             return true;//вместо true вставить метод модели;  
+            MySqlConnection connection = new MySqlConnection(connectString);
+            connection.Open();
+            connection.Ping();
+
         }
 
         static void Tests()

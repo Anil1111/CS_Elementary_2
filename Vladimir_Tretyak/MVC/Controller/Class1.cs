@@ -17,7 +17,7 @@ namespace MVC
         List<Abonent> abonentsController = new List<Abonent>();
         public Controller()
         {          
-            workWithCommand(view.Connection(workWithDB.ConnectionToDB(view.Server, view.Host, view.UserName, view.Password)));
+            workWithCommand(view.Connection(workWithDB.ConnectionToDB(view.ConnectString)));
         }
         public void workWithCommand(int command)
         {         
