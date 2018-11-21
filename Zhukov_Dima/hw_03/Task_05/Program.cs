@@ -32,7 +32,7 @@ namespace Task_05
         }
 
         // Метод добавляющий абитуриента в список на поступления выбранной кафедры
-        public void AddAbiturient(Abiturient abiturient, List<Abiturient> abiturients)
+        public void AddAbiturient(Abiturient abiturient, List<Abiturient> Abiturients)
         {
             Abiturients.Add(abiturient);
             Console.WriteLine("\nСтудент добавлен в список на поступление!");
@@ -44,7 +44,7 @@ namespace Task_05
         }
 
         // Метод перемещающий абитуриента из списка абитуриентов в список студентов при условии успешно сданного вступительного экзамена
-        public void EnteredInStudent(Abiturient abiturient, List<Abiturient> students)
+        public void EnteredInStudent(Abiturient abiturient, List<Abiturient> Abiturients, List<Abiturient> Students)
         {
             if (abiturient.PassedExam == true)
             {
@@ -167,8 +167,8 @@ namespace Task_05
             Console.WriteLine(new string('=', 50));
 
             // Студенты успешно сдавшие вступительные экзамены зачисляются на факультеты
-            faculty1.EnteredInStudent(abiturient1, faculty1.Abiturients);
-            faculty2.EnteredInStudent(abiturient2, faculty2.Abiturients);
+            faculty1.EnteredInStudent(abiturient1, faculty1.Abiturients, faculty1.Students);
+            faculty2.EnteredInStudent(abiturient2, faculty2.Abiturients, faculty2.Students);
 
             Console.ReadKey();
         }
