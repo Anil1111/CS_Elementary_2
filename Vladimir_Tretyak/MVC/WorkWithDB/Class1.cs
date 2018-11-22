@@ -3,37 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MySql.Data.MySqlClient;
 
 namespace MVC
 {
     public class WorkWithDB
     {
-       static List<Abonent> AbonentsDB = new List<Abonent>();
+        static List<Abonent> AbonentsDB = new List<Abonent>();
 
-        public bool ConnectionToDB(string server, string host, string user, string password)
+        public bool ConnectionToDB(string connectString)
         {
-            Tests();
+            //Tests();
             //Вызываем метод модели для подключения к бд и передаем ему в аргументы server,host,user,password
-            //метод модели должен вернуть нам bool;
-            return true;//вместо true вставить метод модели;  
+            //метод модели должен вернуть нам bool;             
+            MySqlConnection connection = new MySqlConnection(connectString);
+            try
+            {
+                connection.Open();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }                       
         }
 
-        static void Tests()
-        {
-            Abonent person1 = new Abonent();
-            person1.Id = 1;
-            person1.LastName = "Ivanov";
-            person1.FirstName = "Ivan";
-            person1.PhoneNumber = "+30973231245";
-            person1.Skype = "IvIvanov";
-            person1.Telegram = "lessons.com";
-            person1.EMail = "ivIv@i.ua";
-            AbonentsDB.Add(person1);
-        }
+        //static void Tests()
+        //{
+        //    Abonent person1 = new Abonent();
+        //    person1.Id = 1;
+        //    person1.LastName = "Ivanov";
+        //    person1.FirstName = "Ivan";
+        //    person1.PhoneNumber = "+30973231245";
+        //    person1.Skype = "IvIvanov";
+        //    person1.Telegram = "lessons.com";
+        //    person1.EMail = "ivIv@i.ua";
+        //    AbonentsDB.Add(person1);
+        //}
 
         public List<Abonent>ReadAll()
         {
+            List<Abonent> persons = new List<Abonent>();
+            string readSQL = "SELECT idPerson,lastName,firstName FROM person WHERE idPerson>0";
+            MySqlCommand command = new MySqlCommand(readSQL, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                persons.Add(new Abonent(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString()));
+                //Console.WriteLine($"{reader[0].ToString()} {reader[1].ToString()} {reader[2].ToString()}");
+            }
+            reader.Close();
+
             //Тестовые данные 
             //Abonent person1 = new Abonent("Ivanov", "Ivan", "+30973231245", "IvIvanov", "lessons.com", "ivIv@i.ua");
             //Abonent person1 = new Abonent();

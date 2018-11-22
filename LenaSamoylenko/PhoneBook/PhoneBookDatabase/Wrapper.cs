@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PhoneBookDatabase;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 
 namespace PhoneBookDatabase
@@ -48,20 +49,34 @@ namespace PhoneBookDatabase
             return table;
         }
 
-        public DataTable UpdateCellName(string name)
+        public DataTable UpdateCellName(int numb, DataGridViewRow row)
         {
-            mySqlCommand = new MySqlCommand("`updateData`", usingDB.Connection);
-            mySqlCommand.Parameters.Add(@"FirstName");
-            //mySqlCommand.Parameters.Add(@"SecondName");
+            mySqlCommand = new MySqlCommand(@"`updateData`", usingDB.Connection);
+            List<string> parameters = new List<string> { @"FirstName", @"SecondName", @"eMail", @"adress", @"skype", @"phone" };
 
-            mySqlCommand.Parameters[@"FirstName"].Value = name;
-            //mySqlCommand.Parameters.Add(@"SecondName");
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                mySqlCommand.Parameters.AddWithValue(parameters[i], row.Cells[i]);
+                mySqlCommand.Parameters[i].MySqlDbType = MySqlDbType.String;
+
+            }
+
+            mySqlCommand.Parameters.AddWithValue(@"ID", numb);
+
 
             mySqlCommand.CommandType = CommandType.StoredProcedure;
-            MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+            mySqlCommand.ExecuteNonQuery();
 
-            DataTable shemaTable = mySqlDataReader.GetSchemaTable();
-            return shemaTable;
+            return SelectAll();
+            //MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+
+            //DataTable shemaTable = mySqlDataReader.GetSchemaTable();
+            //return shemaTable;
+        }
+
+        private void InizParam(string paramName, int index, DataGridViewRow row, MySqlCommand mySqlCommand)
+        {
+
         }
 
         public Tuple<string, bool, bool> buttonPushForConnection()
@@ -92,6 +107,14 @@ namespace PhoneBookDatabase
             return UsingDB.Database;
         }
 
+        public void Update()
+        {
+
+
+        }
+
+        public void AddRow()
+        { }
 
         //DBDelegate bDelegate=new DBDelegate(UsingDB.)
 

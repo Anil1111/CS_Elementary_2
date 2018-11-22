@@ -19,7 +19,7 @@ namespace PhoneBookPresenter
         public MainPresenter(string username, string password)
         {
             wrapper = new Wrapper(username, password);
-            
+
         }
 
 
@@ -29,9 +29,9 @@ namespace PhoneBookPresenter
             del1.Invoke();
         }
 
-        public Tuple<string,bool,bool> ButtonConnection()
+        public Tuple<string, bool, bool> ButtonConnection()
         {
-            var result=wrapper.buttonPushForConnection();
+            var result = wrapper.buttonPushForConnection();
             return result;
         }
 
@@ -52,11 +52,10 @@ namespace PhoneBookPresenter
             return wrapper.ReturnDBName();
         }
 
-        public DataTable UpdateCell()
+        public DataTable UpdateCell(int numb, DataGridViewRow row)
         {
-            string cell = "fdsdf";
-            return wrapper.UpdateCellName(cell);
-            
+            return wrapper.UpdateCellName(numb, row);
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Task_2
         public static void FindNext(string path, string partOfText)
         {
             FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            StreamReader streamReader = new StreamReader(fileStream, Encoding.ASCII);
+            StreamReader streamReader = new StreamReader(fileStream, Encoding.Default);
             while (!streamReader.EndOfStream)
             {
                 string line = streamReader.ReadLine();

@@ -9,33 +9,24 @@ namespace MVC
 {
     interface IView
     {
-        
+
         void printMessage<T>(T text);
         int getCommand();
     }
-    public class View:IView
+    public class View : IView
     {
         #region Поля
-        private string host;
+
         private string server;
         private string userName;
+        private string databaseName;
         private string password;
+        private string connectString;
         private bool connection = false;
         private int choiceOfaction = 0;
         #endregion
         #region Свойства View
-        public string Host
-        {
-            get
-            {
-                return host;
-            }
 
-            set
-            {
-                host = value;
-            }
-        }
 
         public string Server
         {
@@ -63,6 +54,17 @@ namespace MVC
             }
         }
 
+        public string DatabaseName
+        {
+            get
+            {
+                return databaseName;
+            }
+            set
+            {
+                databaseName = value;
+            }
+        }
         public string Password
         {
             get
@@ -101,33 +103,47 @@ namespace MVC
                 choiceOfaction = value;
             }
         }
+
+        public string ConnectString
+        {
+            get
+            {
+                return connectString;
+            }
+            set
+            {
+                connectString = value;
+            }
+        }
+
         #endregion
         #region  Конструктор          
         public View()
         {
-            Authorization();         
+            Authorization();
         }
         #endregion
         #region Диалоги подключения к БД
         private void Authorization()
         {
-            Console.WindowWidth = 85;//Увеличим ширину консоли 
-            Console.WriteLine("Введите хост:");
-            Host = Console.ReadLine();
+            Console.WindowWidth = 85;//Увеличим ширину консоли            
             Console.WriteLine("Введите сервер:");
             Server = Console.ReadLine();
             Console.WriteLine("Введите логин: ");
             UserName = Console.ReadLine();
+            Console.WriteLine("Введите название базы данных");
+            DatabaseName = Console.ReadLine();
             Console.WriteLine("Введите пароль: ");
             Password = Console.ReadLine();
+            ConnectString="server="+Server+";"+"user="+UserName+";"+"database="+DatabaseName+";"+"password="+Password;          
         }
-       
+
         public int Connection(bool connection)
         {
             if (connection == true)
             {
                 Console.WriteLine("Соединение с БД установлено");
-                return getCommand(); 
+                return getCommand();
             }
             else
             {
@@ -152,12 +168,12 @@ namespace MVC
         #endregion
         #region Диалоги записи нового абонента
         public Abonent newAbonent()
-        {       
-            Abonent abonent=new Abonent();    
+        {
+            Abonent abonent = new Abonent();
             Console.WriteLine("Введите фамилию нового абонента:");
             abonent.LastName = Console.ReadLine();
             Console.WriteLine("Введите имя нового абонента:");
-            abonent.FirstName= Console.ReadLine();
+            abonent.FirstName = Console.ReadLine();
             Console.WriteLine("Введите номер телефона нового абонента:");
             abonent.PhoneNumber = Console.ReadLine();
             Console.WriteLine("Введите ник Скайп нового абонент:");
@@ -173,7 +189,7 @@ namespace MVC
         public string searchForChange()
         {
             Console.WriteLine("Для поиска и коррекции данных введите  фамилию и имя абонента ");
-            string lastNameAndFirstName=Console.ReadLine();
+            string lastNameAndFirstName = Console.ReadLine();
             return lastNameAndFirstName;
         }
 
@@ -185,11 +201,11 @@ namespace MVC
         #endregion
         #region Команда для выполнения операции
         public int getCommand()
-        {          
+        {
             Console.WriteLine("Выберите что вы хотите сделать:");
             Console.WriteLine("Нажмите:\n 1-для просмотра всех контактов\n 2-для ввода нового\n 3-для редактирования\n 4-для удаления");
             int commandOfoperation = Convert.ToInt32(Console.ReadLine());
-            return commandOfoperation ;
+            return commandOfoperation;
         }
         #endregion
     }

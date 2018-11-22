@@ -9,77 +9,55 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using GraphicEditor.Figures;
 
 namespace GraphicEditor
 {
     public partial class Form1 : Form
     {
-        Bitmap myBitmap;
-          
-        int a = 0, b = 0;
+
+        public Bitmap bmp { get; set; }
+        Figure figure = null;
+
         public Form1()
         {
             InitializeComponent();
-            this.MouseUp += new MouseEventHandler(pb_MouseUp);
-            this.MouseDown += new MouseEventHandler(pb_MouseDown);
+            figure = new Line(pictureBox1);
+            Event();
         }
 
+        private string filter = "JPEG File(*.jpg)|*.jpg|" +
+                "GIF File(*.gif)|*.gif|" +
+                "Bitmap File(*.bmp)|*.bmp|" +
+                "TIF File(*.tif)|*.tif|" +
+                "PNG File(*.png)|*.png";
 
-        void pb_MouseUp(object sender, MouseEventArgs e)
+        private void open_Click(object sender, EventArgs e)
         {
-            myBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-           var fig = Graphics.FromImage(myBitmap);
-
-            Pen p = new Pen(Color.Green);
-            fig.DrawEllipse(p, a, b, e.X - a, e.Y - b);
-            pictureBox1.Image = myBitmap;
-
-        }
-
-        void pb_MouseDown(object sender, MouseEventArgs e)
-        {
-            a = e.X;
-            b = e.Y;
-        }
-
-        void pb_MouseMove(object sender, MouseEventArgs e)
-        {
-           // toolStripStatusLabel1.Text = "X = " + e.X + "Y = " + e.Y;
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
-            if (dialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = filter;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Image image = Image.FromFile(dialog.FileName);
-                int width = image.Width;
-                int height = image.Height;
-                pictureBox1.Width = width;
-                pictureBox1.Height = height;
-
-                bmp = new Bitmap(Image.FromFile(dialog.FileName), width, height);
-
+                string name = openFileDialog.FileName;
+                pictureBox1.InitialImage = Image.FromFile(name);
+                bmp = new Bitmap(pictureBox1.InitialImage);
                 pictureBox1.Image = bmp;
             }
+
         }
 
+        private void newPict_Click(object sender, EventArgs e)
+        {
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+        }
 
-        public Bitmap bmp { get; set; }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void save_Click(object sender, EventArgs e)
         {
             SaveFileDialog savedialog = new SaveFileDialog();
             savedialog.Title = "Сохранить картинку как ...";
             savedialog.OverwritePrompt = true;
             savedialog.CheckPathExists = true;
-            savedialog.Filter =
-                "Bitmap File(*.bmp)|*.bmp|" +
-                "GIF File(*.gif)|*.gif|" +
-                "JPEG File(*.jpg)|*.jpg|" +
-                "TIF File(*.tif)|*.tif|" +
-                "PNG File(*.png)|*.png";
+            savedialog.Filter = filter;
             savedialog.ShowHelp = true;
             // If selected, save
             if (savedialog.ShowDialog() == DialogResult.OK)
@@ -111,6 +89,32 @@ namespace GraphicEditor
                         break;
                 }
             }
+        }
+
+        private void line_Click(object sender, EventArgs e)
+        {
+            figure = new Line(pictureBox1);
+        }
+
+        private void polyline_Click(object sender, EventArgs e)
+        {
+            figure = new Polyline(pictureBox1);
+        }
+
+        private void Circle_Click(object sender, EventArgs e)
+        {
+            figure = new Circle(pictureBox1);
+        }
+
+        private void rectangle_Click(object sender, EventArgs e)
+        {
+            figure = new GraphicEditor.Figures.Rectangle(pictureBox1);
+        }
+
+        private void Event()
+        {
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(figure.pb_MouseDown);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(figure.pb_MouseUp);
         }
     }
 }

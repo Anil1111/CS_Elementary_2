@@ -65,6 +65,7 @@
     <Reference Include="System.Transactions">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>

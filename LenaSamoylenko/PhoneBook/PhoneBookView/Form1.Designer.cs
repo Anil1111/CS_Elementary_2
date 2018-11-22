@@ -38,6 +38,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.update = new System.Windows.Forms.Button();
+            this.addRow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,8 +117,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(459, 348);
             this.dataGridView1.TabIndex = 7;
-            //this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.update);
-
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(16, 13);
@@ -134,11 +135,31 @@
             this.textBox2.Text = "Password";
             this.textBox2.UseSystemPasswordChar = true;
             // 
+            // update
+            // 
+            this.update.Location = new System.Drawing.Point(94, 71);
+            this.update.Name = "update";
+            this.update.Size = new System.Drawing.Size(75, 23);
+            this.update.TabIndex = 10;
+            this.update.Text = "Update";
+            this.update.UseVisualStyleBackColor = true;
+            // 
+            // addRow
+            // 
+            this.addRow.Location = new System.Drawing.Point(175, 71);
+            this.addRow.Name = "addRow";
+            this.addRow.Size = new System.Drawing.Size(75, 23);
+            this.addRow.TabIndex = 11;
+            this.addRow.Text = "Add row";
+            this.addRow.UseVisualStyleBackColor = true;
+            // 
             // PhoneBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.addRow);
+            this.Controls.Add(this.update);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
@@ -155,7 +176,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            //mine part
+            
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.UpdateData);
         }
 
         #endregion
@@ -170,6 +193,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button update;
+        private System.Windows.Forms.Button addRow;
     }
 }
 

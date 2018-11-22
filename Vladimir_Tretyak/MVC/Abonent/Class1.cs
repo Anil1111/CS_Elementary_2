@@ -107,9 +107,18 @@ namespace MVC
             }
         }
 
-      
-        // public Abonent(string lastName, string firstName, string phoneNumber, string skype, string telegram, string eMail)
-        public Abonent()          
+
+        public Abonent()
+        {
+            id = Id;
+            lastName = LastName;
+            firstName = FirstName;
+            phoneNumber = PhoneNumber;
+            skype = Skype;
+            telegram = Telegram;
+            eMail = EMail;
+        }
+        public Abonent(string lastName, string firstName, string phoneNumber, string skype, string telegram, string eMail)                  
         {
             Id = id;
             LastName = lastName;
