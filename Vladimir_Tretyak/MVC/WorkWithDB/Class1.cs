@@ -10,13 +10,13 @@ namespace MVC
     public class WorkWithDB
     {
         static List<Abonent> AbonentsDB = new List<Abonent>();
-
-        public bool ConnectionToDB(string connectString)
+        MySqlConnection connection;
+        public WorkWithDB(string connectString)
         {
-            //Tests();
-            //Вызываем метод модели для подключения к бд и передаем ему в аргументы server,host,user,password
-            //метод модели должен вернуть нам bool;             
-            MySqlConnection connection = new MySqlConnection(connectString);
+           connection = new MySqlConnection(connectString);
+        }
+        public bool ConnectionToDB()
+        {
             try
             {
                 connection.Open();
@@ -27,59 +27,25 @@ namespace MVC
                 return false;
             }                       
         }
-
-        //static void Tests()
-        //{
-        //    Abonent person1 = new Abonent();
-        //    person1.Id = 1;
-        //    person1.LastName = "Ivanov";
-        //    person1.FirstName = "Ivan";
-        //    person1.PhoneNumber = "+30973231245";
-        //    person1.Skype = "IvIvanov";
-        //    person1.Telegram = "lessons.com";
-        //    person1.EMail = "ivIv@i.ua";
-        //    AbonentsDB.Add(person1);
-        //}
-
+      
         public List<Abonent>ReadAll()
-        {
+        {        
             List<Abonent> persons = new List<Abonent>();
-            string readSQL = "SELECT idPerson,lastName,firstName FROM person WHERE idPerson>0";
+            string readSQL = "SELECT lastName,firstName,phoneNumber,skype,telegram,eMail FROM person";
             MySqlCommand command = new MySqlCommand(readSQL, connection);
             MySqlDataReader reader = command.ExecuteReader();
-
+            int idForView = 0;
             while (reader.Read())
             {
-                persons.Add(new Abonent(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString()));
-                //Console.WriteLine($"{reader[0].ToString()} {reader[1].ToString()} {reader[2].ToString()}");
+                
+                idForView++;
+                persons.Add(new Abonent(idForView,reader[0].ToString(), reader[1].ToString(), reader[2].ToString(),
+                                        reader[3].ToString(),reader[4].ToString(),reader[5].ToString()));
+                
             }
             reader.Close();
-
-            //Тестовые данные 
-            //Abonent person1 = new Abonent("Ivanov", "Ivan", "+30973231245", "IvIvanov", "lessons.com", "ivIv@i.ua");
-            //Abonent person1 = new Abonent();
-            //person1.LastName = "Ivanov";
-            //person1.FirstName = "Ivan";
-            //person1.PhoneNumber = "+30973231245";
-            //person1.Skype = "IvIvanov";
-            //person1.Telegram = "lessons.com";
-            //person1.EMail = "ivIv@i.ua";
-            //abonentsDB.Add(person1);
-
-
-            //Abonent person2 = new Abonent("Petrov", "Petr", "+30673231245", "PetrPet", "webdesign.com", "petrPet@i.ua");
-            //Abonent person3 = new Abonent("Rudakova", "Anna", "+30664567820", "RudAnn", "englishclub.com", "RudAnn@i.ua");
-
-
-
-
-            // массив для сериализации
-            //List<Abonent> people = new List<Abonent>();
-
-
-            //people.Add(person2);
-            //people.Add(person3);        
-            return AbonentsDB;//Вернём список из БД
+          
+            return persons;//Вернём список из БД
         }
 
         public void WriteInDB(List<Abonent> abonentsDB)

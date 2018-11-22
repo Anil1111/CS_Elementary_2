@@ -12,15 +12,19 @@ namespace MVC
     }
     public class Controller : IController
     {
-        View view = new View();
-        WorkWithDB workWithDB = new WorkWithDB();
+        View view;
+        WorkWithDB workWithDB;
         List<Abonent> abonentsController = new List<Abonent>();
         public Controller()
-        {          
-            workWithCommand(view.Connection(workWithDB.ConnectionToDB(view.ConnectString)));
+        {
+           view = new View();
+           workWithDB = new WorkWithDB(view.ConnectString);           
+           workWithCommand(view.Connection(workWithDB.ConnectionToDB()));
+
         }
         public void workWithCommand(int command)
-        {         
+        {
+            
             switch (command)
             {
                 case 1:

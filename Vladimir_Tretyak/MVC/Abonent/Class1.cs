@@ -118,7 +118,7 @@ namespace MVC
             telegram = Telegram;
             eMail = EMail;
         }
-        public Abonent(string lastName, string firstName, string phoneNumber, string skype, string telegram, string eMail)                  
+        public Abonent(int id, string lastName, string firstName, string phoneNumber, string skype, string telegram, string eMail)                  
         {
             Id = id;
             LastName = lastName;
