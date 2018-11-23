@@ -19,6 +19,8 @@ namespace Task_01
     {
         public virtual void Print(string value)             // Виртуальный метод в базовом классе
         {
+            Console.Write("Вызов метода Print() в базовом классе: ");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(value);
         }
     }
@@ -27,13 +29,14 @@ namespace Task_01
     {
         public override void Print(string value)            // Переопределенный метод Print() в производном классе
         {
+            Console.ResetColor();
             Console.Write("Вызов метода Print() в классе ColorRed: ");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(value);
         }
     }
 
-    class ColorGreen : Printer      
+    class ColorGreen : Printer
     {
         public override void Print(string value)            // Переопределенный метод Print() в производном классе
         {
@@ -65,14 +68,19 @@ namespace Task_01
             ColorGreen green = new ColorGreen();
             ColorBlue blue = new ColorBlue();
 
-            colorPrint = red;
-            colorPrint.Print("Красный цвет");
+            Printer colorPrintRef;          // ссылка на базовый класс
 
-            colorPrint = green;
-            colorPrint.Print("Зеленый цвет");
+            colorPrintRef = colorPrint;
+            colorPrintRef.Print("Базовый класс");
 
-            colorPrint = blue;
-            colorPrint.Print("Синий цвет");
+            colorPrintRef = red;
+            colorPrintRef.Print("Красный цвет");
+
+            colorPrintRef = green;
+            colorPrintRef.Print("Зеленый цвет");
+
+            colorPrintRef = blue;
+            colorPrintRef.Print("Синий цвет");
 
             Console.ReadKey();
         }
