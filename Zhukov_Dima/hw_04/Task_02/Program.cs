@@ -207,9 +207,9 @@ namespace Task_02
     class Program
     {
         static void Main(string[] args)
-        {
+        {               
             ClassRoom classRoom = new ClassRoom(new ExcelentPupil(), new GoodPupil(), new BadPupil(), new GoodPupil());
-
+                                   
             classRoom.PrintStudy();
             classRoom.PrintRead();
             classRoom.PrintWrite();
@@ -218,6 +218,19 @@ namespace Task_02
             Console.WriteLine("\nНажмите Enter...");
             Console.ReadKey();
             classRoom.Show();
+
+            // ========== Еще один способ организации программы ==========
+
+            ExcelentPupil pupil1 = new ExcelentPupil();
+            GoodPupil pupil2 = new GoodPupil();
+            BadPupil pupil3 = new BadPupil();
+
+            ClassRoom classRoom2 = new ClassRoom(pupil1, pupil2, pupil3);
+            Console.WriteLine("\nНажмите Enter...");
+            Console.ReadKey();
+
+            Console.Clear();
+            classRoom2.Show();
 
             Console.ReadKey();
         }
