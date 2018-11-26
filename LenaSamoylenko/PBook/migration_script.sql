@@ -2,8 +2,8 @@
 -- MySQL Workbench Migration
 -- Migrated Schemata: pb
 -- Source Schemata: phonebook
--- Created: Sun Nov 25 22:59:00 2018
--- Workbench Version: 8.0.12
+-- Created: Mon Nov 26 17:12:06 2018
+-- Workbench Version: 8.0.13
 -- ----------------------------------------------------------------------------
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -25,9 +25,14 @@ CREATE TABLE IF NOT EXISTS `pb`.`address` (
   `Flat` INT(10) NULL DEFAULT NULL,
   `id_adress` INT(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_adress`),
-  INDEX `fk_adress_idx` (`idName` ASC, `id_adress` ASC) VISIBLE)
+  INDEX `fk_adress_idx` (`idName` ASC, `id_adress` ASC) VISIBLE,
+  CONSTRAINT `fk_adress`
+    FOREIGN KEY (`idName`)
+    REFERENCES `pb`.`name` (`idName`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 77
+AUTO_INCREMENT = 99
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -61,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `pb`.`name` (
   UNIQUE INDEX `idName_UNIQUE` (`idName` ASC) VISIBLE,
   INDEX `ID` (`idName` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 77
+AUTO_INCREMENT = 99
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -80,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `pb`.`phone` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 77
+AUTO_INCREMENT = 99
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -100,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `pb`.`skype` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 77
+AUTO_INCREMENT = 99
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -108,7 +113,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- View pb.all data
 -- ----------------------------------------------------------------------------
 USE `pb`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `phonebook`.`all data` AS select `phonebook`.`name`.`idName` AS `ID`,`phonebook`.`name`.`FirstName` AS `FirstName`,`phonebook`.`name`.`SecondName` AS `SecondName`,`phonebook`.`email`.`eMail` AS `e-mail`,concat(`phonebook`.`address`.`City`,'; ',`phonebook`.`address`.`Street`,', ',`phonebook`.`address`.`homeNumber`,'/',`phonebook`.`address`.`Flat`) AS `address`,`phonebook`.`skype`.`SkypeName` AS `skype`,`phonebook`.`phone`.`Phone` AS `phone` from ((((`phonebook`.`name` left join `phonebook`.`phone` on((`phonebook`.`name`.`idName` = `phonebook`.`phone`.`idName`))) left join `phonebook`.`email` on((`phonebook`.`name`.`idName` = `phonebook`.`email`.`idName`))) left join `phonebook`.`address` on((`phonebook`.`name`.`idName` = `phonebook`.`address`.`idName`))) left join `phonebook`.`skype` on((`phonebook`.`name`.`idName` = `phonebook`.`skype`.`idName`)));
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `phonebook`.`all data` AS select `phonebook`.`name`.`idName` AS `ID`,`phonebook`.`name`.`FirstName` AS `FirstName`,`phonebook`.`name`.`SecondName` AS `SecondName`,`phonebook`.`email`.`eMail` AS `e-mail`,concat(`phonebook`.`address`.`City`,',',`phonebook`.`address`.`Street`,' ',`phonebook`.`address`.`homeNumber`,'/',`phonebook`.`address`.`Flat`) AS `address`,`phonebook`.`skype`.`SkypeName` AS `skype`,concat('0',`phonebook`.`phone`.`Phone`) AS `phone` from ((((`phonebook`.`name` left join `phonebook`.`phone` on((`phonebook`.`name`.`idName` = `phonebook`.`phone`.`idName`))) left join `phonebook`.`email` on((`phonebook`.`name`.`idName` = `phonebook`.`email`.`idName`))) left join `phonebook`.`address` on((`phonebook`.`name`.`idName` = `phonebook`.`address`.`idName`))) left join `phonebook`.`skype` on((`phonebook`.`name`.`idName` = `phonebook`.`skype`.`idName`)));
 
 -- ----------------------------------------------------------------------------
 -- Routine pb.insertData
@@ -120,11 +125,21 @@ USE `pb`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertData`(FirstName varchar(45), SecondName varchar(45), eMail varchar(60), skype varchar(45), phone decimal(12, 0), adress varchar(76))
 BEGIN
 
+DECLARE adr varchar (73);
 
 insert into `name`(`FirstName`,`SecondName`) values (FirstName, SecondName);
 set @var :=LAST_INSERT_ID() ;
-set @city:= string_split(adress, ','||' '||'.'||'/');
--- select @var;
+-- защита от пользователей
+set adr=replace (adress, ',', ' ');
+set adr=replace (adr, '/', ' ');
+  
+  
+-- разделение 
+set @city:= substring_index(adr, ' ', 1); 
+set @street:=substring_index(substring_index(adr, ' ', 2),' ',-1);
+set @homeNumber:=substring_index(substring_index(adr,' ',-2), ' ', 1);
+set @flat:=substring_index(adr, ' ', -1);
+
 
 insert into `email` (`eMail`, `idName`,`id_mail`)
 values (eMail, @var, @var); 
@@ -135,8 +150,11 @@ values (phone, @var, @var);
 insert into `skype` (`SkypeName`, `idName`, `Password`, `id_skype`)
 values (skype, @var, '1111', @var);
 
+
 insert into `address` (`idName`,`City`,`Street`,`homeNumber`,`Flat`,`id_adress`)
-values (@var, @city, null, null, null, @var);
+values (@var, @city, @street, @homeNumber, @flat, @var);
+
+
 
 END$$
 
@@ -164,9 +182,18 @@ DELIMITER $$
 
 DELIMITER $$
 USE `pb`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateData`(FirstName varchar(45), SecondName varchar(45), eMail varchar(60), skype varchar(45), phone decimal(12, 0), adress varchar (76), ID int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateData`(FirstName varchar(45), SecondName varchar(45), eMail varchar(60), skype varchar(45), phone decimal(12, 0), adress varchar (73), ID int(11))
 BEGIN
 -- `address`
+DECLARE adr varchar (73);
+set adr=replace (adress, ',', ' ');
+set adr=replace (adr, '/', ' ');
+
+set @city:= substring_index(adr, ' ', 1); 
+set @street:=substring_index(substring_index(adr, ' ', 2),' ',-1);
+set @homeNumber:=substring_index(substring_index(adr,' ', 3), ' ', -1);
+set @flat:=substring_index(adr, ' ', -1);
+
 
 update `name` 
 set `FirstName`=FirstName, `SecondName`=SecondName
@@ -185,7 +212,7 @@ set `Phone`=phone
 where `idName`=ID;
 
 update `address`
-set `City`=adress
+set `City`=@city, `Street`=@street, `homeNumber`=@homeNumber, `Flat`=@flat
 where `idName`=ID;
 
 END$$
