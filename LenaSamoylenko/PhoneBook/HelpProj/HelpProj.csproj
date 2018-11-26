@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BC4BC86-B2FC-4836-A643-468AFE8DE90F}</ProjectGuid>
+    <ProjectGuid>{2FA29A01-5BDC-4AFE-BCB8-8FBC981EC1ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhoneBookPresenter</RootNamespace>
-    <AssemblyName>PhoneBookPresenter</AssemblyName>
+    <RootNamespace>HelpProj</RootNamespace>
+    <AssemblyName>HelpProj</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,9 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,20 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InsertDialogData.cs" />
-    <Compile Include="IUserDialog.cs" />
-    <Compile Include="MainPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HelpProj\HelpProj.csproj">
-      <Project>{2fa29a01-5bdc-4afe-bcb8-8fbc981ec1ed}</Project>
-      <Name>HelpProj</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PhoneBookDatabase\PhoneBookDatabase.csproj">
-      <Project>{366deb97-f2ed-4cd6-9ac1-6394a82fdb63}</Project>
-      <Name>PhoneBookDatabase</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

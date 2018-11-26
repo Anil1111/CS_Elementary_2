@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PhoneBookPresenter;
 
 
+
 namespace PhoneBookView
 {
     public partial class PhoneBook : Form, IPhoneBookView
@@ -29,7 +30,7 @@ namespace PhoneBookView
         private void button1_Click(object sender, EventArgs e)
         {
             presenter = new MainPresenter(textBox1.Text, textBox2.Text);
-            var con= presenter.ButtonConnection();
+            var con = presenter.ButtonConnection();
             label1.Text = con.Item1;
             label3.Text = presenter.ReturnDatabases();
             label3.Visible = con.Item2;
@@ -55,9 +56,20 @@ namespace PhoneBookView
 
         private void UpdateData(object sender, EventArgs e)
         {
-            presenter.UpdateCell(dataGridView1.CurrentCellAddress.Y,dataGridView1.CurrentRow);
+            presenter.UpdateCell(dataGridView1.CurrentCellAddress.Y, dataGridView1.CurrentRow);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
 
+        private void addRow_Click(object sender, EventArgs e)
+        {
+            var form = new InsertData();
+            form.ShowDialog();
+            presenter.InputRow(form.Data);
+        }
     }
 }

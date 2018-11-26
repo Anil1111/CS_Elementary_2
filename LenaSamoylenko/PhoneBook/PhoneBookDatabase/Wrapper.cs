@@ -8,7 +8,6 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Windows.Forms;
 
-
 namespace PhoneBookDatabase
 {
     public delegate DataTable DBDelegate();
@@ -52,16 +51,19 @@ namespace PhoneBookDatabase
         public DataTable UpdateCellName(int numb, DataGridViewRow row)
         {
             mySqlCommand = new MySqlCommand(@"`updateData`", usingDB.Connection);
-            List<string> parameters = new List<string> { @"FirstName", @"SecondName", @"eMail", @"adress", @"skype", @"phone" };
+            List<string> parameters = new List<string> { @"ID", @"FirstName", @"SecondName", @"eMail", @"adress", @"skype", @"phone" };
 
             for (int i = 0; i < parameters.Count; i++)
             {
-                mySqlCommand.Parameters.AddWithValue(parameters[i], row.Cells[i]);
-                mySqlCommand.Parameters[i].MySqlDbType = MySqlDbType.String;
+                mySqlCommand.Parameters.AddWithValue(parameters[i], row.Cells[i].Value);
+                if (i != 0 && i != 6)
+                    mySqlCommand.Parameters[i].MySqlDbType = MySqlDbType.String;
+                else if (i == 6) { mySqlCommand.Parameters[i].MySqlDbType = MySqlDbType.Decimal; }
+                else { mySqlCommand.Parameters[0].MySqlDbType = MySqlDbType.Int32; }
 
             }
 
-            mySqlCommand.Parameters.AddWithValue(@"ID", numb);
+            //mySqlCommand.Parameters.AddWithValue(@"ID", numb);
 
 
             mySqlCommand.CommandType = CommandType.StoredProcedure;
@@ -113,10 +115,31 @@ namespace PhoneBookDatabase
 
         }
 
-        public void AddRow()
-        { }
 
-        //DBDelegate bDelegate=new DBDelegate(UsingDB.)
+        public void AddRow(HelpProj.InsertDialogData data)
+        {
+            mySqlCommand = new MySqlCommand(@"`insertData`", usingDB.Connection);
+            List<string> parameters = new List<string> { @"FirstName", @"SecondName", @"eMail", @"skype", @"phone", @"adress" };
 
+
+            mySqlCommand.Parameters.AddWithValue(parameters[0], data.FirstName);
+            mySqlCommand.Parameters.AddWithValue(parameters[1], data.SecondName);
+            mySqlCommand.Parameters.AddWithValue(parameters[2], data.Email);
+            mySqlCommand.Parameters.AddWithValue(parameters[3], data.Skype);
+            mySqlCommand.Parameters.AddWithValue(parameters[4], data.Phone);
+            mySqlCommand.Parameters.AddWithValue(parameters[5], data.Adress);
+
+
+
+            for (int i = 0; i < parameters.Count; i++)
+            { mySqlCommand.Parameters[i].MySqlDbType = MySqlDbType.String; }
+            mySqlCommand.Parameters[4].MySqlDbType = MySqlDbType.Decimal;
+
+            mySqlCommand.CommandType = CommandType.StoredProcedure;
+            mySqlCommand.ExecuteNonQuery();
+        }
     }
+    //DBDelegate bDelegate=new DBDelegate(UsingDB.)
+
 }
+

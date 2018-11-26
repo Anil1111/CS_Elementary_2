@@ -92,5 +92,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelpProj\HelpProj.csproj">
+      <Project>{2fa29a01-5bdc-4afe-bcb8-8fbc981ec1ed}</Project>
+      <Name>HelpProj</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

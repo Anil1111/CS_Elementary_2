@@ -58,6 +58,12 @@
     <Compile Include="FormUserDialog.Designer.cs">
       <DependentUpon>FormUserDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertData.Designer.cs">
+      <DependentUpon>InsertData.cs</DependentUpon>
+    </Compile>
     <Compile Include="IPhoneBookView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +72,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserDialog.resx">
       <DependentUpon>FormUserDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertData.resx">
+      <DependentUpon>InsertData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,6 +99,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HelpProj\HelpProj.csproj">
+      <Project>{2fa29a01-5bdc-4afe-bcb8-8fbc981ec1ed}</Project>
+      <Name>HelpProj</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhoneBookPresenter\PhoneBookPresenter.csproj">
       <Project>{7bc4bc86-b2fc-4836-a643-468afe8de90f}</Project>
       <Name>PhoneBookPresenter</Name>

@@ -53,8 +53,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(442, 436);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            //this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(figure.pb_MouseDown);
-            //this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(figure.pb_MouseUp);
             // 
             // label1
             // 
@@ -210,6 +208,9 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
+
+
+
 
         }
 

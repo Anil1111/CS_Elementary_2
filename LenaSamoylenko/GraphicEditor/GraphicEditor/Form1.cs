@@ -59,6 +59,8 @@ namespace GraphicEditor
             savedialog.CheckPathExists = true;
             savedialog.Filter = filter;
             savedialog.ShowHelp = true;
+
+            
             // If selected, save
             if (savedialog.ShowDialog() == DialogResult.OK)
             {
@@ -109,12 +111,15 @@ namespace GraphicEditor
         private void rectangle_Click(object sender, EventArgs e)
         {
             figure = new GraphicEditor.Figures.Rectangle(pictureBox1);
-        }
+            
+         }
 
         private void Event()
         {
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(figure.pb_MouseDown);
+            this.pictureBox1.MouseMove += new MouseEventHandler(figure.pb_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(figure.pb_MouseUp);
+            //this.pictureBox1.MouseUp += new MouseEventHandler((object sender, MouseEventArgs e) => { pictureBox1.Refresh(); });
         }
     }
 }

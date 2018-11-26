@@ -16,13 +16,13 @@ namespace GraphicEditor.Figures
 
         public override void pb_MouseUp(object sender, MouseEventArgs e)
         {
-            myBitmap = new Bitmap(this.pictureBox.Width, this.pictureBox.Height);
-            var fig = Graphics.FromImage(myBitmap);
+            //myBitmap = new Bitmap(this.pictureBox.Width, this.pictureBox.Height);
+            //var fig = Graphics.FromImage(myBitmap);
 
-            Pen p = new Pen(Color.Green);
-            fig.DrawRectangle(p, a, b, e.X - a, e.Y - b);
-            pictureBox.Image = myBitmap;
-
+            //Pen p = new Pen(Color.Green);
+            //fig.DrawRectangle(p, a, b, e.X - a, e.Y - b);
+            //pictureBox.Image = myBitmap;
+            
         }
     }
 }

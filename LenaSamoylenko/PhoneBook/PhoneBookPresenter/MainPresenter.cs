@@ -8,6 +8,7 @@ using PhoneBookView;
 using System.Windows.Forms;
 using System.Data;
 
+
 namespace PhoneBookPresenter
 {
     public class MainPresenter
@@ -56,6 +57,11 @@ namespace PhoneBookPresenter
         {
             return wrapper.UpdateCellName(numb, row);
 
+        }
+
+        public void InputRow(HelpProj.InsertDialogData data)
+        {
+            wrapper.AddRow(data);
         }
     }
 }
